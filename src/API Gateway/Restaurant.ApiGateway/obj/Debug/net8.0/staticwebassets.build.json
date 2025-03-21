@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "uR/pe4nK9MqhgN8dCpw0uDAHARFJ/y7h+0oR7j9eVcQ=",
+  "Source": "Restaurant.ApiGateway",
+  "BasePath": "_content/Restaurant.ApiGateway",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

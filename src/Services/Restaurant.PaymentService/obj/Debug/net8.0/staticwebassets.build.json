@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "3fHBjuSuEdlFGH0TnR1Jb37soNiSN/wAVAsCMnXvPzE=",
+  "Source": "Restaurant.PaymentService",
+  "BasePath": "_content/Restaurant.PaymentService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
