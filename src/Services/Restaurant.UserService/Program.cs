@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Restaurant.Shared.Data;
+using Restaurant.UserService.Data;
+using Restaurant.UserService.Interfaces;
 
 namespace Restaurant.UserService
 {
@@ -19,17 +21,10 @@ namespace Restaurant.UserService
             // Add services to the container.
             builder.Services.AddControllers();
 
-            //builder.Services.AddEndpointsApiExplorer();
-            //builder.Services.AddSwaggerGen();
+            //Register services
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
 
             var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            //if (app.Environment.IsDevelopment())
-            //{
-            //    app.UseSwagger();
-            //    app.UseSwaggerUI();
-            //}
 
             app.UseHttpsRedirection();
 

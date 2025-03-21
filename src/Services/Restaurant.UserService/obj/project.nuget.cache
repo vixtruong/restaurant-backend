@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Q3i+Fk5iezo=",
+  "dgSpecHash": "SitH2QVCeOQ=",
   "success": true,
-  "projectFilePath": "D:\\User\\Desktop\\HK2 - III\\Microservice\\Midterm\\Project\\RestaurantSystem\\src\\Services\\Restaurant.UserService\\Restaurant.UserService.csproj",
+  "projectFilePath": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantSystem\\src\\Services\\Restaurant.UserService\\Restaurant.UserService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.build.framework\\17.8.3\\microsoft.build.framework.17.8.3.nupkg.sha512",
