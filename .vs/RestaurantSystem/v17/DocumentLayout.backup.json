@@ -48,7 +48,7 @@
               "RelativeDocumentMoniker": "client\\restaurant-client\\.gitignore",
               "ToolTip": "D:\\User\\Desktop\\HK2 - III\\Microservice\\Midterm\\Project\\RestaurantSystem\\client\\restaurant-client\\.gitignore",
               "RelativeToolTip": "client\\restaurant-client\\.gitignore",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-03-21T10:10:16.948Z",
               "EditorCaption": ""
@@ -56,14 +56,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Restaurant.ApiGateway.csproj",
+              "Title": "Restaurant.ApiGateway",
               "DocumentMoniker": "D:\\User\\Desktop\\HK2 - III\\Microservice\\Midterm\\Project\\RestaurantSystem\\src\\API Gateway\\Restaurant.ApiGateway\\Restaurant.ApiGateway.csproj",
               "RelativeDocumentMoniker": "src\\API Gateway\\Restaurant.ApiGateway\\Restaurant.ApiGateway.csproj",
               "ToolTip": "D:\\User\\Desktop\\HK2 - III\\Microservice\\Midterm\\Project\\RestaurantSystem\\src\\API Gateway\\Restaurant.ApiGateway\\Restaurant.ApiGateway.csproj",
               "RelativeToolTip": "src\\API Gateway\\Restaurant.ApiGateway\\Restaurant.ApiGateway.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-03-21T10:10:10.312Z"
+              "WhenOpened": "2025-03-21T10:10:10.312Z",
+              "EditorCaption": ""
             }
           ]
         }
