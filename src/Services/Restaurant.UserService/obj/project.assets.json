@@ -5308,11 +5308,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantSystem\\src\\Services\\Restaurant.UserService\\Restaurant.UserService.csproj",
+      "projectUniqueName": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Services\\Restaurant.UserService\\Restaurant.UserService.csproj",
       "projectName": "Restaurant.UserService",
-      "projectPath": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantSystem\\src\\Services\\Restaurant.UserService\\Restaurant.UserService.csproj",
+      "projectPath": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Services\\Restaurant.UserService\\Restaurant.UserService.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantSystem\\src\\Services\\Restaurant.UserService\\obj\\",
+      "outputPath": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Services\\Restaurant.UserService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5334,8 +5334,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantSystem\\src\\Shared\\Restaurant.Shared\\Restaurant.Shared.csproj": {
-              "projectPath": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantSystem\\src\\Shared\\Restaurant.Shared\\Restaurant.Shared.csproj"
+            "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Shared\\Restaurant.Shared\\Restaurant.Shared.csproj": {
+              "projectPath": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Shared\\Restaurant.Shared\\Restaurant.Shared.csproj"
             }
           }
         }
