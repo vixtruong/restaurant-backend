@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Restaurant.Shared.Data;
 using Restaurant.Shared.Models;
-using Restaurant.UserService.DTOs;
-using Restaurant.UserService.Interfaces;
+using Restaurant.OrderManagementService.DTOs;
+using Restaurant.OrderManagementService.Interfaces;
 
-namespace Restaurant.UserService.Data
+namespace Restaurant.OrderManagementService.Data
 {
     public class UserRepository : IUserRepository
     {
@@ -15,6 +15,7 @@ namespace Restaurant.UserService.Data
             _context = context;
         }
 
+        // GET ALL USERS
         public async Task<IEnumerable<UserDto>> GetAllUsersAsync()
         {
             return await _context.Users.Include(u => u.Role)
@@ -28,6 +29,7 @@ namespace Restaurant.UserService.Data
                 }).ToListAsync();
         }
 
+        // GET USER BY ID
         public async Task<UserDto> GetUserByIdAsync(int id)
         {
             var user = await _context.Users.Include(u => u.Role)
@@ -42,7 +44,8 @@ namespace Restaurant.UserService.Data
                 RoleName = user.Role.RoleName,
             };
         }
-
+        
+        // GET USER BY EMAIL
         public async Task<UserDto> GetUserByEmailAsync(string email)
         {
             var user = await _context.Users.Include(u => u.Role)
@@ -58,6 +61,7 @@ namespace Restaurant.UserService.Data
             };
         }
 
+        // ADD USER
         public async Task AddUserAsync(RegisterUserDto userDto)
         {
             var user = new User
@@ -74,6 +78,7 @@ namespace Restaurant.UserService.Data
             await _context.SaveChangesAsync();
         }
 
+        // UPDATE USER
         public async Task UpdateUserAsync(UserDto userDto)
         {
             var user = await _context.Users.FindAsync(userDto.Id);
@@ -87,6 +92,7 @@ namespace Restaurant.UserService.Data
             }
         }
 
+        // DELETE USER
         public async Task DeleteUserAsync(string id)
         {
             var user = await _context.Users.FindAsync(id);
@@ -97,6 +103,8 @@ namespace Restaurant.UserService.Data
             }
         }
 
+
+        // VERIFY LOGIN
         public async Task<bool> VerifyAccount(LoginRequestDto loginRequestDto)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginRequestDto.Email);

@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Restaurant.Shared.Data;
-using Restaurant.UserService.Data;
-using Restaurant.UserService.Interfaces;
+using Restaurant.OrderManagementService.Data;
+using Restaurant.OrderManagementService.Interfaces;
 using System.Text;
 
-namespace Restaurant.UserService
+namespace Restaurant.OrderManagementService
 {
     public class Program
     {
@@ -44,6 +44,8 @@ namespace Restaurant.UserService
 
             // Register services
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+            builder.Services.AddScoped<IMenuItemRepository, MenuItemRepository>();
 
             var app = builder.Build();
 

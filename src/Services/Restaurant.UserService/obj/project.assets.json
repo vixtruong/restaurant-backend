@@ -5028,9 +5028,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Services\\Restaurant.UserService\\Restaurant.UserService.csproj",
-      "projectName": "Restaurant.UserService",
-      "projectPath": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Services\\Restaurant.UserService\\Restaurant.UserService.csproj",
+      "projectUniqueName": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Services\\Restaurant.UserService\\Restaurant.OrderManagementService.csproj",
+      "projectName": "Restaurant.OrderManagementService",
+      "projectPath": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Services\\Restaurant.UserService\\Restaurant.OrderManagementService.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
       "outputPath": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Services\\Restaurant.UserService\\obj\\",
       "projectStyle": "PackageReference",

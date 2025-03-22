@@ -1,4 +1,4 @@
-﻿namespace Restaurant.UserService.DTOs
+﻿namespace Restaurant.OrderManagementService.DTOs
 {
     public class UserDto
     {

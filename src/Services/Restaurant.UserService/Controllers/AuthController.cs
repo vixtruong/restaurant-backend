@@ -3,10 +3,10 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using Restaurant.UserService.DTOs;
-using Restaurant.UserService.Interfaces;
+using Restaurant.OrderManagementService.DTOs;
+using Restaurant.OrderManagementService.Interfaces;
 
-namespace Restaurant.UserService.Controllers
+namespace Restaurant.OrderManagementService.Controllers
 {
     [Route("api/auth")]
     [ApiController]

@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "ODWGzk7xnzn4fYSS5+FnqIiUqtm26QCFw3AcKBeubBQ=",
-  "Source": "Restaurant.UserService",
-  "BasePath": "_content/Restaurant.UserService",
+  "Hash": "zK08LeF7qGHqQi9bmDnCOXxfzgm3+25HoTpfHAK+JW4=",
+  "Source": "Restaurant.OrderManagementService",
+  "BasePath": "_content/Restaurant.OrderManagementService",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

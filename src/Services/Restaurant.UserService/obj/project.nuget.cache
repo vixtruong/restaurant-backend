@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "U5dNjxx8cXE=",
+  "dgSpecHash": "U5v1vI8QxEU=",
   "success": true,
-  "projectFilePath": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Services\\Restaurant.UserService\\Restaurant.UserService.csproj",
+  "projectFilePath": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Services\\Restaurant.UserService\\Restaurant.OrderManagementService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

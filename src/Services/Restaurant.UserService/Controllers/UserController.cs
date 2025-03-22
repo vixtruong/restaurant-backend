@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Restaurant.UserService.DTOs;
-using Restaurant.UserService.Interfaces;
+using Restaurant.OrderManagementService.DTOs;
+using Restaurant.OrderManagementService.Interfaces;
 
-namespace Restaurant.UserService.Controllers
+namespace Restaurant.OrderManagementService.Controllers
 {
     [Route("api/users")]
     [ApiController]

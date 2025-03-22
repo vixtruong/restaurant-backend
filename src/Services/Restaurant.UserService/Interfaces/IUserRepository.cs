@@ -1,6 +1,6 @@
-﻿using Restaurant.UserService.DTOs;
+﻿using Restaurant.OrderManagementService.DTOs;
 
-namespace Restaurant.UserService.Interfaces
+namespace Restaurant.OrderManagementService.Interfaces
 {
     public interface IUserRepository
     {
