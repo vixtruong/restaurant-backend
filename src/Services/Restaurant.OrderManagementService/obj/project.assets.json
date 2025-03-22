@@ -5014,6 +5014,7 @@
     "net8.0": [
       "BCrypt.Net-Next >= 4.0.3",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.3",
+      "Microsoft.EntityFrameworkCore.Design >= 9.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.3",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.21.0",
@@ -5028,11 +5029,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Services\\Restaurant.UserService\\Restaurant.OrderManagementService.csproj",
+      "projectUniqueName": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Services\\Restaurant.OrderManagementService\\Restaurant.OrderManagementService.csproj",
       "projectName": "Restaurant.OrderManagementService",
-      "projectPath": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Services\\Restaurant.UserService\\Restaurant.OrderManagementService.csproj",
+      "projectPath": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Services\\Restaurant.OrderManagementService\\Restaurant.OrderManagementService.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Services\\Restaurant.UserService\\obj\\",
+      "outputPath": "D:\\User\\Desktop\\III - HK2\\Microservice\\Midterm\\Project\\RestaurantBackend\\src\\Services\\Restaurant.OrderManagementService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5082,6 +5083,12 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
             "version": "[8.0.3, )"
+          },
+          "Microsoft.EntityFrameworkCore.Design": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[9.0.3, )"
           },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",

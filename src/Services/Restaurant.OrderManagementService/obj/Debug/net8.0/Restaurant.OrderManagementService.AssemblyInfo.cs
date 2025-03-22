@@ -11,11 +11,11 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("2a0d714f-e20e-4402-bca4-6ce6dfae7d35")]
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("e2ac3258-520c-46bc-aef0-70ffadc6917b")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Restaurant.OrderManagementService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3a6de2def3ed3d44b8150dad6ceb5c1751b87d64")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+693ceddfbe3c100c7c954b6056a1f01b65f88fa8")]
 [assembly: System.Reflection.AssemblyProductAttribute("Restaurant.OrderManagementService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Restaurant.OrderManagementService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

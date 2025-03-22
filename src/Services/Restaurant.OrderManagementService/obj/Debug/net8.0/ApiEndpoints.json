@@ -85,8 +85,24 @@
   },
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.MenuItemController",
-    "Method": "UpdateMenuItem",
+    "Method": "DeleteMenuItem",
     "RelativePath": "api/menu-items/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.MenuItemController",
+    "Method": "UpdateMenuItem",
+    "RelativePath": "api/menu-items/update-information/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -106,9 +122,9 @@
   },
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.MenuItemController",
-    "Method": "DeleteMenuItem",
-    "RelativePath": "api/menu-items/{id}",
-    "HttpMethod": "DELETE",
+    "Method": "UpdateMenuItemStatus",
+    "RelativePath": "api/menu-items/update-status/{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
