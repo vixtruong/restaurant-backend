@@ -1,7 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Restaurant.Shared.Data;
 using Restaurant.UserService.Data;
 using Restaurant.UserService.Interfaces;
+using System.Text;
 
 namespace Restaurant.UserService
 {
@@ -11,25 +14,43 @@ namespace Restaurant.UserService
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Đọc chuỗi kết nối từ appsettings.json
+            // Read connectionString from appsettings.json
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-            // Thêm DbContext vào Dependency Injection
+            // Add DbContext into Dependency Injection
             builder.Services.AddDbContext<RestaurantDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            // Config Authentication with JWT
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, o =>
+                {
+                    o.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidIssuer = builder.Configuration["JwtConfig:Issuer"],
+                        ValidAudience = builder.Configuration["JwtConfig:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtConfig:Key"])),
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                    };
+                });
+
+            builder.Services.AddAuthorization();
 
             // Add services to the container.
             builder.Services.AddControllers();
 
-            //Register services
+            // Register services
             builder.Services.AddScoped<IUserRepository, UserRepository>();
 
             var app = builder.Build();
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.MapControllers();
 

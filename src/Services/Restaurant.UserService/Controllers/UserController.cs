@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Restaurant.UserService.DTOs;
 using Restaurant.UserService.Interfaces;
 
@@ -15,6 +16,8 @@ namespace Restaurant.UserService.Controllers
             _userRepository = userRepository;
         }
 
+        // Return list all users
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
@@ -22,6 +25,8 @@ namespace Restaurant.UserService.Controllers
             return Ok(users);
         }
 
+        // Get user by id
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(int id)
         {
@@ -35,6 +40,7 @@ namespace Restaurant.UserService.Controllers
             return Ok(user);
         }
 
+        // register staff or add customer into system
         [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] RegisterUserDto? userDto)
         {
@@ -47,6 +53,7 @@ namespace Restaurant.UserService.Controllers
             return Ok(new { message = "User registered successfully" });
         }
 
+        // update information user
         [HttpPut("update")]
         public async Task<IActionResult> UpdateUser([FromBody] UserDto userDto)
         {

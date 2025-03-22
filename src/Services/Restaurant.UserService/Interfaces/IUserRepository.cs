@@ -10,5 +10,6 @@ namespace Restaurant.UserService.Interfaces
         Task AddUserAsync(RegisterUserDto userDto);
         Task UpdateUserAsync(UserDto userDto);
         Task DeleteUserAsync(string id);
+        Task<bool> VerifyAccount(LoginRequestDto loginRequestDto);
     }
 }

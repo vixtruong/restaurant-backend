@@ -11,3 +11,16 @@ D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantSystem\src\Shar
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantSystem\src\Shared\Restaurant.Shared\obj\Debug\net8.0\refint\Restaurant.Shared.dll
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantSystem\src\Shared\Restaurant.Shared\obj\Debug\net8.0\Restaurant.Shared.pdb
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantSystem\src\Shared\Restaurant.Shared\obj\Debug\net8.0\ref\Restaurant.Shared.dll
+D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Shared\Restaurant.Shared\bin\Debug\net8.0\Restaurant.Shared.deps.json
+D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Shared\Restaurant.Shared\bin\Debug\net8.0\Restaurant.Shared.dll
+D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Shared\Restaurant.Shared\bin\Debug\net8.0\Restaurant.Shared.pdb
+D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Shared\Restaurant.Shared\obj\Debug\net8.0\Restaurant.Shared.csproj.AssemblyReference.cache
+D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Shared\Restaurant.Shared\obj\Debug\net8.0\Restaurant.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Shared\Restaurant.Shared\obj\Debug\net8.0\Restaurant.Shared.AssemblyInfoInputs.cache
+D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Shared\Restaurant.Shared\obj\Debug\net8.0\Restaurant.Shared.AssemblyInfo.cs
+D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Shared\Restaurant.Shared\obj\Debug\net8.0\Restaurant.Shared.csproj.CoreCompileInputs.cache
+D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Shared\Restaurant.Shared\obj\Debug\net8.0\Restaurant.Shared.sourcelink.json
+D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Shared\Restaurant.Shared\obj\Debug\net8.0\Restaurant.Shared.dll
+D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Shared\Restaurant.Shared\obj\Debug\net8.0\refint\Restaurant.Shared.dll
+D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Shared\Restaurant.Shared\obj\Debug\net8.0\Restaurant.Shared.pdb
+D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Shared\Restaurant.Shared\obj\Debug\net8.0\ref\Restaurant.Shared.dll

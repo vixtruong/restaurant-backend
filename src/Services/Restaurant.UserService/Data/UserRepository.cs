@@ -96,5 +96,17 @@ namespace Restaurant.UserService.Data
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task<bool> VerifyAccount(LoginRequestDto loginRequestDto)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginRequestDto.Email);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            return BCrypt.Net.BCrypt.Verify(loginRequestDto.Password, user.PasswordHash);
+        }
     }
 }
