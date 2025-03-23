@@ -42,6 +42,48 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
+    "Method": "GetAllKitchenOrders",
+    "RelativePath": "api/kitchen-orders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
+    "Method": "UpdateKitchenOrderToCooking",
+    "RelativePath": "api/kitchen-orders/update-to-cooking/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
+    "Method": "UpdateKitchenOrderToReady",
+    "RelativePath": "api/kitchen-orders/update-to-ready/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.MenuItemController",
     "Method": "GetAllMenuItems",
     "RelativePath": "api/menu-items",

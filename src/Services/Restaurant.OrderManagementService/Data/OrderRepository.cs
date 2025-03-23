@@ -34,6 +34,8 @@ namespace Restaurant.OrderManagementService.Data
                 _context.Orders.Add(newOrder);
                 await _context.SaveChangesAsync();
 
+                #region START ADD ORDERITEMS
+
                 var orderItemsList = new List<OrderItem>();
                 decimal totalPrice = 0;
 
@@ -41,9 +43,7 @@ namespace Restaurant.OrderManagementService.Data
                 {
                     var menuItem = await _context.MenuItems.FindAsync(item.MenuItemId);
                     if (menuItem == null)
-                    {
                         throw new Exception($"MenuItemId {item.MenuItemId} not found");
-                    }
 
                     var orderItem = new OrderItem
                     {
@@ -59,6 +59,28 @@ namespace Restaurant.OrderManagementService.Data
                 }
 
                 _context.OrderItems.AddRange(orderItemsList);
+                await _context.SaveChangesAsync();
+
+                #endregion END ADD ORDERITEMS
+
+                #region START ADD KITCHENORDER WHEN ORDERITEMS HAS ID
+
+                var kitchenOrders = new List<KitchenOrder>();
+
+                foreach (var orderItem in orderItemsList)
+                {
+                    var kitchenOrder = new KitchenOrder
+                    {
+                        OrderItemId = orderItem.Id,
+                        Status = "Pending",
+                    };
+                    kitchenOrders.Add(kitchenOrder);
+                }
+
+                _context.KitchenOrders.AddRange(kitchenOrders);
+
+                #endregion END ADD KITCHENORDER WHEN ORDERITEMS HAS ID
+
                 newOrder.TotalPrice = totalPrice;
 
                 await _context.SaveChangesAsync();
@@ -77,11 +99,11 @@ namespace Restaurant.OrderManagementService.Data
                     Status = newOrder.Status,
                     TableNumber = newOrder.TableNumber,
                     TotalPrice = newOrder.TotalPrice,
-
                 };
             }
             catch (Exception e)
             {
+                await transaction.RollbackAsync(); // 🔥 Rollback nếu có lỗi
                 Console.WriteLine(e);
                 throw;
             }
