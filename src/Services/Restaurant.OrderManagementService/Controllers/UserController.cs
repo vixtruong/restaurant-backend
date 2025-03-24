@@ -17,7 +17,7 @@ namespace Restaurant.OrderManagementService.Controllers
         }
 
         // Return list all users
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
@@ -57,13 +57,13 @@ namespace Restaurant.OrderManagementService.Controllers
         [HttpPut("update")]
         public async Task<IActionResult> UpdateUser([FromBody] UserDto userDto)
         {
-            var user = await _userRepository.GetUserByIdAsync(userDto.Id);
-            if (user == null)
+            var updated = await _userRepository.UpdateUserAsync(userDto);
+
+            if (!updated)
             {
                 return NotFound("User not found");
             }
-
-            await _userRepository.UpdateUserAsync(userDto);
+            
             return NoContent();
         }
     }

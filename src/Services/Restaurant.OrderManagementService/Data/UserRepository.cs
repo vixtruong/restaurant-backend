@@ -44,7 +44,29 @@ namespace Restaurant.OrderManagementService.Data
                 RoleName = user.Role.RoleName,
             };
         }
-        
+
+        public async Task<UserDto> GetUserByRefreshTokenAsync(string refreshToken)
+        {
+            if (string.IsNullOrEmpty(refreshToken))
+            {
+                return null;
+            }
+
+            return await _context.Users
+                .Include(u => u.Role)
+                .Where(u => u.RefreshToken == refreshToken && u.RefreshTokenExpiryTime > DateTime.UtcNow)
+                .Select(u => new UserDto
+                {
+                    Id = u.Id,
+                    FullName = u.FullName,
+                    Email = u.Email,
+                    PhoneNumber = u.PhoneNumber,
+                    RoleName = u.Role.RoleName,
+                    RefreshToken = u.RefreshToken
+                })
+                .FirstOrDefaultAsync();
+        }
+
         // GET USER BY EMAIL
         public async Task<UserDto> GetUserByEmailAsync(string email)
         {
@@ -79,28 +101,32 @@ namespace Restaurant.OrderManagementService.Data
         }
 
         // UPDATE USER
-        public async Task UpdateUserAsync(UserDto userDto)
+        public async Task<bool> UpdateUserAsync(UserDto userDto)
         {
             var user = await _context.Users.FindAsync(userDto.Id);
+            if (user == null) return false;
 
-            if (user != null)
-            {
-                user.Email = userDto.Email;
-                user.FullName = userDto.FullName;
-                user.PhoneNumber = userDto.PhoneNumber;
-                await _context.SaveChangesAsync();
-            }
+            user.Email = userDto.Email;
+            user.FullName = userDto.FullName;
+            user.PhoneNumber = userDto.PhoneNumber;
+            user.RefreshToken = userDto.RefreshToken;
+            user.RefreshTokenExpiryTime = userDto.RefreshTokenExpiryTime;
+
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         // DELETE USER
-        public async Task DeleteUserAsync(string id)
+        public async Task<bool> DeleteUserAsync(string id)
         {
             var user = await _context.Users.FindAsync(id);
             if (user != null)
             {
                 _context.Users.Remove(user);
                 await _context.SaveChangesAsync();
+                return true;
             }
+            return false;
         }
 
 

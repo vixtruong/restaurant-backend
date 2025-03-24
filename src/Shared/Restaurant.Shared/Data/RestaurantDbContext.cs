@@ -149,10 +149,13 @@ public partial class RestaurantDbContext : DbContext
             entity.HasIndex(e => e.Email, "UQ__Users__A9D10534B09A8851").IsUnique();
 
             entity.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
+            entity.Property(e => e.RefreshTokenExpiryTime).HasDefaultValueSql("(sysdatetime())");
             entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.FullName).HasMaxLength(100);
             entity.Property(e => e.PasswordHash).HasMaxLength(255);
             entity.Property(e => e.PhoneNumber).HasMaxLength(15);
+            entity.Property(e => e.RefreshToken).HasMaxLength(500);
+
 
             entity.HasOne(d => d.Role).WithMany(p => p.Users)
                 .HasForeignKey(d => d.RoleId)

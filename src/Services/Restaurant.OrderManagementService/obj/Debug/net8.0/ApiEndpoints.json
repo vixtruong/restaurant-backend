@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.AuthController",
-    "Method": "GenerateToken",
+    "Method": "GenerateAccessToken",
     "RelativePath": "api/auth",
     "HttpMethod": "",
     "IsController": true,
@@ -37,6 +37,112 @@
         "Name": "loginDto",
         "Type": "Restaurant.OrderManagementService.DTOs.LoginRequestDto",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.AuthController",
+    "Method": "Logout",
+    "RelativePath": "api/auth/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "logoutRequest",
+        "Type": "Restaurant.OrderManagementService.DTOs.LogoutRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.AuthController",
+    "Method": "RefreshToken",
+    "RelativePath": "api/auth/refresh",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tokenRequest",
+        "Type": "Restaurant.OrderManagementService.DTOs.RefreshTokenRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.InventoryController",
+    "Method": "GetAllIngredients",
+    "RelativePath": "api/inventory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.InventoryController",
+    "Method": "GetIngredientById",
+    "RelativePath": "api/inventory/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.InventoryController",
+    "Method": "AddIngredient",
+    "RelativePath": "api/inventory/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Restaurant.OrderManagementService.DTOs.InventoryDto",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.InventoryController",
+    "Method": "DeleteIngredient",
+    "RelativePath": "api/inventory/delete/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.InventoryController",
+    "Method": "UpdateIngredient",
+    "RelativePath": "api/inventory/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Restaurant.OrderManagementService.DTOs.InventoryDto",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
