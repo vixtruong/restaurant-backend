@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Restaurant.OrderManagementService.DTOs;
 using Restaurant.OrderManagementService.Interfaces;
 
@@ -31,7 +32,8 @@ namespace Restaurant.OrderManagementService.Controllers
             return Ok(item);
         }
 
-        [HttpPost]
+        //[Authorize]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateMenuItem([FromBody] MenuItemDto? menuItemDto)
         {
             if (menuItemDto == null) return BadRequest(new { message = "Invalid data" });
@@ -40,7 +42,8 @@ namespace Restaurant.OrderManagementService.Controllers
             return CreatedAtAction(nameof(GetMenuItemById), new { id = createdItem.Id }, createdItem);
         }
 
-        [HttpPut("update-information/{id}")]
+        //[Authorize]
+        [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateMenuItem(int id, [FromBody] MenuItemDto menuItemDto)
         {
             var updated = await _menuItemRepository.UpdateMenuItemAsync(id, menuItemDto);
@@ -49,6 +52,7 @@ namespace Restaurant.OrderManagementService.Controllers
             return NoContent();
         }
 
+        //[Authorize]
         [HttpPut("update-status/{id}")]
         public async Task<IActionResult> UpdateMenuItemStatus(int id)
         {
@@ -58,6 +62,7 @@ namespace Restaurant.OrderManagementService.Controllers
             return NoContent();
         }
 
+        //[Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMenuItem(int id)
         {

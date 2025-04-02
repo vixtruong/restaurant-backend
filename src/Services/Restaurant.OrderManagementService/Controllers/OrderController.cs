@@ -5,7 +5,7 @@ using Restaurant.OrderManagementService.Interfaces;
 namespace Restaurant.OrderManagementService.Controllers
 {
     [Route("api/orders")]
-    [Authorize]
+    //[Authorize]
     [ApiController]
     public class OrderController : Controller
     {
@@ -14,6 +14,24 @@ namespace Restaurant.OrderManagementService.Controllers
         public OrderController(IOrderRepository orderRepository)
         {
             _orderRepository = orderRepository;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllOrders()
+        {
+            var orders = await _orderRepository.GetAllOrdersAsync();
+
+            return Ok(orders);
+        }
+
+        [HttpGet("detail/{orderId}")]
+        public async Task<IActionResult> GetOrderDetail(int orderId)
+        {
+            var orderDetail = await _orderRepository.GetOrderDetailAsync(orderId);
+
+            if (orderDetail == null) return NotFound(new { message = "Order not found." });
+
+            return Ok(orderDetail);
         }
 
         [HttpPost("create")]

@@ -17,16 +17,107 @@ namespace Restaurant.OrderManagementService.Data
 
         public async Task<IEnumerable<KitchenOrderDto>> GetAllKitchenOrdersAsync()
         {
-            return await _context.KitchenOrders.Include(o => o.OrderItem)
+            return await _context.KitchenOrders
+                .Include(o => o.OrderItem)
+                .ThenInclude(oi => oi.MenuItem)
+                .Include(o => o.OrderItem)
+                .ThenInclude(oi => oi.Order)
                 .Select(o => new KitchenOrderDto
                 {
-                    Id =  o.Id,
+                    Id = o.Id,
                     OrderItemId = o.OrderItemId,
+                    tableNumber = o.OrderItem.Order.TableNumber,
                     Status = o.Status,
+                    Quantity = o.OrderItem.Quantity,
                     CookAt = o.CookedAt,
-                    MenuItemId = o.OrderItem.MenuItemId,
-                }).ToListAsync();
+                    MenuItem = new MenuItemDto
+                    {
+                        Id = o.OrderItem.MenuItem.Id,
+                        Name = o.OrderItem.MenuItem.Name,
+                        Description = o.OrderItem.MenuItem.Description,
+                        Category = o.OrderItem.MenuItem.Category,
+                        Price = o.OrderItem.MenuItem.Price,
+                        ImgUrl = o.OrderItem.MenuItem.ImgUrl
+                    }
+                })
+                .ToListAsync();
         }
+
+
+        public async Task<IEnumerable<KitchenOrderDto>> GetKitchenOrdersTodayAsync()
+        {
+            var orderItems = await _context.OrderItems
+                .Include(oi => oi.Order)
+                .Include(oi => oi.MenuItem) // 👈 THÊM Include MenuItem
+                .Where(oi => oi.Order.CreatedAt.Value.Date == DateTime.Today)
+                .ToListAsync();
+
+            var orderItemIds = orderItems.Select(oi => oi.Id).ToList();
+
+            var kitchenOrders = await _context.KitchenOrders
+                .Include(o => o.OrderItem)
+                .ThenInclude(oi => oi.MenuItem)
+                .Where(o => orderItemIds.Contains(o.OrderItemId ?? 0))
+                .Select(o => new KitchenOrderDto
+                {
+                    Id = o.Id,
+                    OrderItemId = o.OrderItemId,
+                    tableNumber = o.OrderItem.Order.TableNumber,
+                    Status = o.Status,
+                    Quantity = o.OrderItem.Quantity,
+                    CookAt = o.CookedAt,
+                    MenuItem = new MenuItemDto
+                    {
+                        Id = o.OrderItem.MenuItem.Id,
+                        Name = o.OrderItem.MenuItem.Name,
+                        Description = o.OrderItem.MenuItem.Description,
+                        Category = o.OrderItem.MenuItem.Category,
+                        Price = o.OrderItem.MenuItem.Price,
+                        ImgUrl = o.OrderItem.MenuItem.ImgUrl
+                    }
+                })
+                .ToListAsync();
+
+            return kitchenOrders;
+        }
+
+
+        public async Task<IEnumerable<KitchenOrderDto>> GetKitchenOrdersByOrderIdAsync(int orderId)
+        {
+            var orderItems = await _context.OrderItems
+                .Include(oi => oi.Order)
+                .Where(oi => oi.Order.CreatedAt.Value.Date == DateTime.Today && oi.OrderId == orderId)
+                .ToListAsync();
+
+            var orderItemIds = orderItems.Select(oi => oi.Id).ToList();
+
+            var kitchenOrders = await _context.KitchenOrders
+                .Include(o => o.OrderItem)
+                .ThenInclude(oi => oi.MenuItem)
+                .Where(o => orderItemIds.Contains(o.OrderItemId ?? 0))
+                .Select(o => new KitchenOrderDto
+                {
+                    Id = o.Id,
+                    OrderItemId = o.OrderItemId,
+                    tableNumber = o.OrderItem.Order.TableNumber,
+                    Status = o.Status,
+                    Quantity = o.OrderItem.Quantity,
+                    CookAt = o.CookedAt,
+                    MenuItem = new MenuItemDto
+                    {
+                        Id = o.OrderItem.MenuItem.Id,
+                        Name = o.OrderItem.MenuItem.Name,
+                        Description = o.OrderItem.MenuItem.Description,
+                        Category = o.OrderItem.MenuItem.Category,
+                        Price = o.OrderItem.MenuItem.Price,
+                        ImgUrl = o.OrderItem.MenuItem.ImgUrl
+                    }
+                })
+                .ToListAsync();
+
+            return kitchenOrders;
+        }
+
 
         public async Task<KitchenOrderDto> CreateKitchenOrderAsync(KitchenOrderDto kitchenOrder)
         {

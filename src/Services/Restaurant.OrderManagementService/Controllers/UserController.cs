@@ -17,16 +17,25 @@ namespace Restaurant.OrderManagementService.Controllers
         }
 
         // Return list all users
-        [Authorize(Roles = "Admin")]
-        [HttpGet]
-        public async Task<IActionResult> GetAllUsers()
+        //[Authorize(Roles = "Admin")]
+        [HttpGet("employees")]
+        public async Task<IActionResult> GetAllEmployees()
         {
-            var users = await _userRepository.GetAllUsersAsync();
+            var users = await _userRepository.GetAllEmployeesAsync();
+            return Ok(users);
+        }
+
+        // Return list all customers
+        //[Authorize(Roles = "Admin")]
+        [HttpGet("customers")]
+        public async Task<IActionResult> GetAllCustomers()
+        {
+            var users = await _userRepository.GetAllCustomersAsync();
             return Ok(users);
         }
 
         // Get user by id
-        [Authorize]
+        //[Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(int id)
         {
@@ -41,7 +50,7 @@ namespace Restaurant.OrderManagementService.Controllers
         }
 
         // register staff or add customer into system
-        [HttpPost("register")]
+        [HttpPost("add")]
         public async Task<IActionResult> RegisterUser([FromBody] RegisterUserDto? userDto)
         {
             if (userDto == null)
@@ -50,7 +59,7 @@ namespace Restaurant.OrderManagementService.Controllers
             }
 
             await _userRepository.AddUserAsync(userDto);
-            return Ok(new { message = "User registered successfully" });
+            return Ok(new { message = "User is added successfully" });
         }
 
         // update information user
@@ -63,7 +72,16 @@ namespace Restaurant.OrderManagementService.Controllers
             {
                 return NotFound("User not found");
             }
-            
+
+            return NoContent();
+        }
+
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var deleted = await _userRepository.DeleteUserAsync(id);
+
+            if (!deleted) return NotFound("User not found");
+
             return NoContent();
         }
     }

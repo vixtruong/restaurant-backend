@@ -37,7 +37,18 @@ namespace Restaurant.OrderManagementService
                     };
                 });
 
-            builder.Services.AddAuthorization();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    policy =>
+                    {
+                        policy.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .WithExposedHeaders("Authorization")
+                            .SetIsOriginAllowed(_ => true);
+                    });
+            });
 
             // Add services to the container.
             builder.Services.AddControllers();
@@ -53,12 +64,15 @@ namespace Restaurant.OrderManagementService
 
             app.UseHttpsRedirection();
 
+            app.UseCors("AllowAll");
+
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();
 
             app.Run();
+
         }
     }
 }

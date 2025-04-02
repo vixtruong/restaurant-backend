@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Restaurant.OrderManagementService.DTOs;
 using Restaurant.OrderManagementService.Interfaces;
 using Restaurant.Shared.Data;
@@ -15,24 +16,68 @@ namespace Restaurant.OrderManagementService.Data
             _context = context;
         }
 
-        // Create Order with List of menu items using transaction
+        public async Task<OrderDetailDto?> GetOrderDetailAsync(int orderId)
+        {
+            var orderItems = await _context.OrderItems
+                .Include(oi => oi.MenuItem)
+                .Where(oi => oi.OrderId == orderId)
+                .ToListAsync();
+
+            if (!orderItems.Any())
+                return null;
+
+            var order = await _context.Orders.Include(o => o.Customer).Where(o => o.Id == orderId).FirstOrDefaultAsync();
+
+            var orderDetail = new OrderDetailDto
+            {
+                OrderId = orderId,
+                CustomerName = order?.Customer?.FullName,
+                TableNumber = order?.TableNumber,
+                OrderItems = new List<OrderItemDetailDto>()
+            };
+
+            foreach (var item in orderItems)
+            {
+                orderDetail.OrderItems.Add(new OrderItemDetailDto
+                {
+                    Id = item.Id,
+                    MenuItemName = item.MenuItem?.Name,
+                    Quantity = item.Quantity,
+                    UnitPrice = item.MenuItem?.Price,
+                    Price = item.Price
+                });
+            }
+
+            return orderDetail;
+        }
+
         public async Task<OrderDto> CreateOrderAsync(OrderRequestDto request)
         {
             using var transaction = await _context.Database.BeginTransactionAsync();
 
             try
             {
-                var newOrder = new Order
-                {
-                    CustomerId = request.CustomerId,
-                    TableNumber = request.TableNumber,
-                    Status = "Pending",
-                    TotalPrice = 0,
-                    CreatedAt = DateTime.UtcNow
-                };
+                Order newOrder;
 
-                _context.Orders.Add(newOrder);
-                await _context.SaveChangesAsync();
+                if (request.OrderId.HasValue)
+                {
+                    newOrder = await _context.Orders.FindAsync(request.OrderId.Value)
+                               ?? throw new Exception($"Order {request.OrderId} not found");
+                }
+                else
+                {
+                    newOrder = new Order
+                    {
+                        CustomerId = request.CustomerId,
+                        TableNumber = request.TableNumber,
+                        Status = "Unpaid",
+                        TotalPrice = 0,
+                        CreatedAt = DateTime.UtcNow
+                    };
+
+                    _context.Orders.Add(newOrder);
+                    await _context.SaveChangesAsync();
+                }
 
                 #region START ADD ORDERITEMS
 

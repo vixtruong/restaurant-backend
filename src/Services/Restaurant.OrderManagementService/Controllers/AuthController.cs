@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Restaurant.OrderManagementService.DTOs;
 using Restaurant.OrderManagementService.Interfaces;
-using Restaurant.Shared.Models;
 
 namespace Restaurant.OrderManagementService.Controllers
 {
@@ -37,6 +36,38 @@ namespace Restaurant.OrderManagementService.Controllers
 
             var accessToken = GenerateAccessToken(user, _configuration);
             var refreshToken = GenerateRefreshToken();
+
+            user.RefreshToken = refreshToken;
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(30);
+            await _userRepository.UpdateUserAsync(user);
+
+            return Ok(new { accessToken = accessToken, refreshToken = refreshToken });
+        }
+
+        [HttpPost("entry")]
+        public async Task<IActionResult> Entry([FromBody] EntryRequestDto? dto)
+        {
+            var accessToken = "";
+            var refreshToken = "";
+
+            var existUser = await _userRepository.GetCustomerByPhoneNumberAsync(dto.PhoneNumber);
+
+            if (existUser != null)
+            {
+                accessToken = GenerateAccessToken(existUser, _configuration);
+                refreshToken = GenerateRefreshToken();
+
+                existUser.RefreshToken = refreshToken;
+                existUser.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(15);
+                await _userRepository.UpdateUserAsync(existUser);
+
+                return Ok(new { accessToken = accessToken, refreshToken = refreshToken });
+            }
+
+            var user = await _userRepository.AddCustomerAsync(dto);
+
+            accessToken = GenerateAccessToken(user, _configuration);
+            refreshToken = GenerateRefreshToken();
 
             user.RefreshToken = refreshToken;
             user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(15);
@@ -96,7 +127,7 @@ namespace Restaurant.OrderManagementService.Controllers
 
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Role, user.RoleName),
             };
 
@@ -105,7 +136,7 @@ namespace Restaurant.OrderManagementService.Controllers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(15),
+                Expires = DateTime.UtcNow.AddSeconds(10),
                 Audience = audience,
                 Issuer = issuer,
                 SigningCredentials = credentials

@@ -27,6 +27,22 @@
   },
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.AuthController",
+    "Method": "Entry",
+    "RelativePath": "api/auth/entry",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Restaurant.OrderManagementService.DTOs.EntryRequestDto",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "api/auth/login",
     "HttpMethod": "POST",
@@ -159,6 +175,32 @@
   },
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
+    "Method": "GetKitchenOrdersByOrderId",
+    "RelativePath": "api/kitchen-orders/by-order/{orderId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
+    "Method": "GetKitchenOrdersToday",
+    "RelativePath": "api/kitchen-orders/today",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
     "Method": "UpdateKitchenOrderToCooking",
     "RelativePath": "api/kitchen-orders/update-to-cooking/{id}",
     "HttpMethod": "PUT",
@@ -201,22 +243,6 @@
   },
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.MenuItemController",
-    "Method": "CreateMenuItem",
-    "RelativePath": "api/menu-items",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "menuItemDto",
-        "Type": "Restaurant.OrderManagementService.DTOs.MenuItemDto",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Restaurant.OrderManagementService.Controllers.MenuItemController",
     "Method": "GetMenuItemById",
     "RelativePath": "api/menu-items/{id}",
     "HttpMethod": "GET",
@@ -249,21 +275,16 @@
   },
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.MenuItemController",
-    "Method": "UpdateMenuItem",
-    "RelativePath": "api/menu-items/update-information/{id}",
-    "HttpMethod": "PUT",
+    "Method": "CreateMenuItem",
+    "RelativePath": "api/menu-items/create",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
         "Name": "menuItemDto",
         "Type": "Restaurant.OrderManagementService.DTOs.MenuItemDto",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -282,6 +303,37 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.MenuItemController",
+    "Method": "UpdateMenuItem",
+    "RelativePath": "api/menu-items/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "menuItemDto",
+        "Type": "Restaurant.OrderManagementService.DTOs.MenuItemDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.OrderController",
+    "Method": "GetAllOrders",
+    "RelativePath": "api/orders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -317,13 +369,35 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Restaurant.OrderManagementService.Controllers.UserController",
-    "Method": "GetAllUsers",
-    "RelativePath": "api/users",
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.OrderController",
+    "Method": "GetOrderDetail",
+    "RelativePath": "api/orders/detail/{orderId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "orderId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.UserController",
+    "Method": "DeleteUser",
+    "RelativePath": "api/users",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -345,7 +419,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.UserController",
     "Method": "RegisterUser",
-    "RelativePath": "api/users/register",
+    "RelativePath": "api/users/add",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -356,6 +430,26 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.UserController",
+    "Method": "GetAllCustomers",
+    "RelativePath": "api/users/customers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.UserController",
+    "Method": "GetAllEmployees",
+    "RelativePath": "api/users/employees",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

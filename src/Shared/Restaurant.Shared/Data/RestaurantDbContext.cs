@@ -65,7 +65,9 @@ public partial class RestaurantDbContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__MenuItem__3214EC078D7A4EED");
 
             entity.Property(e => e.Available).HasDefaultValue(true);
+            entity.Property(e => e.KitchenAvailable).HasDefaultValue(true);
             entity.Property(e => e.Category).HasMaxLength(50);
+            entity.Property(e => e.ImgUrl).HasMaxLength(500);
             entity.Property(e => e.Name).HasMaxLength(100);
             entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
         });

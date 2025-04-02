@@ -19,21 +19,27 @@ namespace Restaurant.OrderManagementService.Data
         public async Task<IEnumerable<MenuItemDto>> GetAllMenuItemsAsync()
         {
             return await _context.MenuItems
+                .Where(i => i.Available == true)
                 .Select(i => new MenuItemDto
                 {
                     Id = i.Id,
                     Name = i.Name,
                     Category = i.Category,
                     Description = i.Description,
+                    ImgUrl = i.ImgUrl,
                     Price = i.Price,
                     Available = i.Available,
+                    KitchenAvailable = i.KitchenAvailable,
                 }).ToListAsync();
+
         }
 
         // GET MENUITEM BY ID
         public async Task<MenuItemDto> GetMenuItemByIdAsync(int id)
         {
-            var menuItem = await _context.MenuItems.FindAsync(id);
+            var menuItem = await _context.MenuItems
+                .Where(i => i.Available == true && i.Id == id)
+                .FirstOrDefaultAsync();
             if (menuItem == null) return null;
 
             return new MenuItemDto
@@ -42,8 +48,10 @@ namespace Restaurant.OrderManagementService.Data
                 Name = menuItem.Name,
                 Category = menuItem.Category,
                 Description = menuItem.Description,
+                ImgUrl = menuItem.ImgUrl,
                 Price = menuItem.Price,
-                Available = menuItem.Available
+                Available = menuItem.Available,
+                KitchenAvailable = menuItem.KitchenAvailable,
             };
         }
 
@@ -55,8 +63,10 @@ namespace Restaurant.OrderManagementService.Data
                 Name = menuItemDto.Name,
                 Category = menuItemDto.Category,
                 Description = menuItemDto.Description,
+                ImgUrl = menuItemDto.ImgUrl,
                 Price = menuItemDto.Price,
-                Available = menuItemDto.Available
+                Available = true,
+                KitchenAvailable = true
             };
 
             _context.MenuItems.Add(newMenuItem);
@@ -67,9 +77,11 @@ namespace Restaurant.OrderManagementService.Data
                 Id = newMenuItem.Id,
                 Name = newMenuItem.Name,
                 Category = newMenuItem.Category,
+                ImgUrl = newMenuItem.ImgUrl,
                 Description = newMenuItem.Description,
                 Price = newMenuItem.Price,
-                Available = newMenuItem.Available
+                Available = newMenuItem.Available,
+                KitchenAvailable = true
             };
         }
 
@@ -82,6 +94,7 @@ namespace Restaurant.OrderManagementService.Data
             menuItem.Name = menuItemDto.Name;
             menuItem.Category = menuItemDto.Category;
             menuItem.Description = menuItemDto.Description;
+            menuItem.ImgUrl = menuItemDto.ImgUrl;
             menuItem.Price = menuItemDto.Price;
             menuItem.Available = menuItemDto.Available;
 
@@ -95,7 +108,7 @@ namespace Restaurant.OrderManagementService.Data
             var menuItem = await _context.MenuItems.FindAsync(id);
             if (menuItem == null) return false;
 
-            menuItem.Available = !menuItem.Available;
+            menuItem.KitchenAvailable = !menuItem.KitchenAvailable;
 
             await _context.SaveChangesAsync();
             return true;
@@ -107,7 +120,7 @@ namespace Restaurant.OrderManagementService.Data
             var menuItem = await _context.MenuItems.FindAsync(id);
             if (menuItem == null) return false;
 
-            _context.MenuItems.Remove(menuItem);
+            menuItem.Available = !menuItem.Available;
             await _context.SaveChangesAsync();
             return true;
         }

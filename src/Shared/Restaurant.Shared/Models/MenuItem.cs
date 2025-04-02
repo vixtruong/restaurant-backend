@@ -11,11 +11,15 @@ public partial class MenuItem
 
     public string? Description { get; set; }
 
+    public string ImgUrl { get; set; }
+
     public decimal Price { get; set; }
 
     public string? Category { get; set; }
 
     public bool? Available { get; set; }
+
+    public bool? KitchenAvailable { get; set; }
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 }

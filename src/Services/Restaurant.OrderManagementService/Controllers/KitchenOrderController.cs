@@ -22,6 +22,22 @@ namespace Restaurant.OrderManagementService.Controllers
             return Ok(kitchenOrders);
         }
 
+        [HttpGet("today")]
+        public async Task<IActionResult> GetKitchenOrdersToday()
+        {
+            var kitchenOrders = await _kitchenOrderRepository.GetKitchenOrdersTodayAsync();
+
+            return Ok(kitchenOrders);
+        }
+
+        [HttpGet("by-order/{orderId}")]
+        public async Task<IActionResult> GetKitchenOrdersByOrderId(int orderId)
+        {
+            var kitchenOrders = await _kitchenOrderRepository.GetKitchenOrdersByOrderIdAsync(orderId);
+
+            return Ok(kitchenOrders);
+        }
+
         [HttpPut("update-to-cooking/{id}")]
         public async Task<IActionResult> UpdateKitchenOrderToCooking(int id)
         {
