@@ -31,6 +31,7 @@ namespace Restaurant.OrderManagementService.Data
             var orderDetail = new OrderDetailDto
             {
                 OrderId = orderId,
+                CustomerId = order?.CustomerId,
                 CustomerName = order?.Customer?.FullName,
                 TableNumber = order?.TableNumber,
                 OrderItems = new List<OrderItemDetailDto>()
@@ -187,7 +188,6 @@ namespace Restaurant.OrderManagementService.Data
                     TotalPrice = o.TotalPrice,
                 }).ToListAsync();
         }
-
 
         // UPDATE ORDER
         public async Task<bool> UpdateOrderStatusAsync(int orderId, string? status)

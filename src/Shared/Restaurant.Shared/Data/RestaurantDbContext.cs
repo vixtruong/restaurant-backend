@@ -28,8 +28,6 @@ public partial class RestaurantDbContext : DbContext
 
     public virtual DbSet<Role> Roles { get; set; }
 
-    public virtual DbSet<Transaction> Transactions { get; set; }
-
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -129,19 +127,6 @@ public partial class RestaurantDbContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Roles__3214EC07DA27EA0F");
 
             entity.Property(e => e.RoleName).HasMaxLength(50);
-        });
-
-        modelBuilder.Entity<Transaction>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__Transact__3214EC07073C079A");
-
-            entity.Property(e => e.Amount).HasColumnType("decimal(10, 2)");
-            entity.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
-            entity.Property(e => e.TransactionType).HasMaxLength(20);
-
-            entity.HasOne(d => d.Payment).WithMany(p => p.Transactions)
-                .HasForeignKey(d => d.PaymentId)
-                .HasConstraintName("FK__Transacti__Payme__45F365D3");
         });
 
         modelBuilder.Entity<User>(entity =>

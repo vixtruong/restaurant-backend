@@ -1,0 +1,96 @@
+[
+  {
+    "ContainingType": "Restaurant.PaymentService.Controllers.PaymentController",
+    "Method": "GetAllPayments",
+    "RelativePath": "api/payments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.PaymentService.Controllers.PaymentController",
+    "Method": "CreatePayment",
+    "RelativePath": "api/payments/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "payment",
+        "Type": "Restaurant.PaymentService.DTOs.PaymentDto",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.PaymentService.Controllers.PaymentController",
+    "Method": "GetPaymentsFromTo",
+    "RelativePath": "api/payments/from-to",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "from",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "to",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.PaymentService.Controllers.PaymentController",
+    "Method": "GetPaymentsByMonthYear",
+    "RelativePath": "api/payments/month-year/{month}/{year}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "month",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "year",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.PaymentService.Controllers.PaymentController",
+    "Method": "GetPaymentsToday",
+    "RelativePath": "api/payments/today",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.PaymentService.Controllers.PaymentController",
+    "Method": "UpdateCancelStatus",
+    "RelativePath": "api/payments/update-status-to-cancel/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
