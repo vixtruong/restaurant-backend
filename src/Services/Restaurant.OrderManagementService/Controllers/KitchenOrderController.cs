@@ -57,5 +57,15 @@ namespace Restaurant.OrderManagementService.Controllers
 
             return NoContent();
         }
+
+        [HttpPut("delete/{id}")]
+        public async Task<IActionResult> DeleteKitchenOrder(int id)
+        {
+            var deleted = await _kitchenOrderRepository.DeleteKitchenOrderAsync(id);
+
+            if (!deleted) return NotFound(new { message = "KitchenOrder not found" });
+
+            return NoContent();
+        }
     }
 }

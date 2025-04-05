@@ -49,7 +49,7 @@
   {
     "ContainingType": "Restaurant.PaymentService.Controllers.PaymentController",
     "Method": "GetPaymentsByMonthYear",
-    "RelativePath": "api/payments/month-year/{month}/{year}",
+    "RelativePath": "api/payments/month-year",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -57,12 +57,12 @@
       {
         "Name": "month",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       },
       {
         "Name": "year",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

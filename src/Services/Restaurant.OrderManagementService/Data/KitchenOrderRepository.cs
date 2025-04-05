@@ -166,7 +166,12 @@ namespace Restaurant.OrderManagementService.Data
 
             if (kitchenOrder == null) return false;
 
+            var orderItem = await _context.OrderItems.FindAsync(kitchenOrder.OrderItemId);
+            var order = await _context.Orders.FindAsync(orderItem?.OrderId);
+
+            order!.TotalPrice -= orderItem?.Price;
             _context.KitchenOrders.Remove(kitchenOrder);
+            _context.OrderItems.Remove(orderItem!);
             await _context.SaveChangesAsync();
             return true;
         }
