@@ -5,7 +5,7 @@ using Restaurant.OrderManagementService.Interfaces;
 namespace Restaurant.OrderManagementService.Controllers
 {
     [Route("api/orders")]
-    //[Authorize]
+    [Authorize]
     [ApiController]
     public class OrderController : Controller
     {

@@ -5,6 +5,7 @@ using Restaurant.OrderManagementService.Interfaces;
 
 namespace Restaurant.OrderManagementService.Controllers
 {
+    [Authorize]
     [Route("api/menu-items")]
     [ApiController]
     public class MenuItemController : ControllerBase
