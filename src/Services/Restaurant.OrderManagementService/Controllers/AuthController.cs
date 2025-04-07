@@ -58,7 +58,7 @@ namespace Restaurant.OrderManagementService.Controllers
                 refreshToken = GenerateRefreshToken();
 
                 existUser.RefreshToken = refreshToken;
-                existUser.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(15);
+                existUser.RefreshTokenExpiryTime = DateTime.UtcNow.AddHours(3);
                 await _userRepository.UpdateUserAsync(existUser);
 
                 return Ok(new { accessToken = accessToken, refreshToken = refreshToken });
@@ -70,7 +70,7 @@ namespace Restaurant.OrderManagementService.Controllers
             refreshToken = GenerateRefreshToken();
 
             user.RefreshToken = refreshToken;
-            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(15);
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(3);
             await _userRepository.UpdateUserAsync(user);
 
             return Ok(new { accessToken = accessToken, refreshToken = refreshToken });

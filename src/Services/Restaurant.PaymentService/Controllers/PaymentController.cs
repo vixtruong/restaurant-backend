@@ -6,6 +6,7 @@ using Restaurant.PaymentService.Interfaces;
 namespace Restaurant.PaymentService.Controllers
 {
     [Route("api/payments")]
+    [Authorize]
     [ApiController]
     public class PaymentController : Controller
     {

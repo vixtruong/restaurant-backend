@@ -17,7 +17,7 @@ namespace Restaurant.OrderManagementService.Controllers
         }
 
         // Return list all users
-        //[Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpGet("employees")]
         public async Task<IActionResult> GetAllEmployees()
         {
@@ -63,6 +63,7 @@ namespace Restaurant.OrderManagementService.Controllers
         }
 
         // update information user
+        [Authorize]
         [HttpPut("update")]
         public async Task<IActionResult> UpdateUser([FromBody] UserDto userDto)
         {
@@ -76,6 +77,7 @@ namespace Restaurant.OrderManagementService.Controllers
             return NoContent();
         }
 
+        [Authorize]
         public async Task<IActionResult> DeleteUser(int id)
         {
             var deleted = await _userRepository.DeleteUserAsync(id);

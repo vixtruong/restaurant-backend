@@ -13,5 +13,7 @@ public partial class KitchenOrder
 
     public DateTime? CookedAt { get; set; }
 
+    public bool? Done { get; set; }
+
     public virtual OrderItem? OrderItem { get; set; }
 }

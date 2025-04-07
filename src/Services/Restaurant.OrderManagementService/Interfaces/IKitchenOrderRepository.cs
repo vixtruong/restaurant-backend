@@ -10,6 +10,7 @@ namespace Restaurant.OrderManagementService.Interfaces
         Task<KitchenOrderDto> CreateKitchenOrderAsync(KitchenOrderDto kitchenOrder);
         Task<bool> UpdateKitchenOrderToCookingAsync(int id);
         Task<bool> UpdateKitchenOrderToReadyAsync(int id);
+        Task<bool> UpdateKitchenOrderDoneAsync(int id);
         Task<bool> DeleteKitchenOrderAsync(int id);
     }
 }

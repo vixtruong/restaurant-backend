@@ -24,6 +24,22 @@ namespace Restaurant.OrderManagementService.Controllers
             return Ok(orders);
         }
 
+        [HttpGet("number-orders-month")]
+        public async Task<IActionResult> GetNumberOfOrdersInMonth()
+        {
+            var numberOfOrders = await _orderRepository.GetAllNumberOrdersInMonthAsync();
+
+            return Ok(numberOfOrders);
+        }
+
+        [HttpGet("number-orders-today")]
+        public async Task<IActionResult> GetNumberOfOrdersToday()
+        {
+            var numberOfOrders = await _orderRepository.GetAllNumberOrdersTodayAsync();
+
+            return Ok(numberOfOrders);
+        }
+
         [HttpGet("detail/{orderId}")]
         public async Task<IActionResult> GetOrderDetail(int orderId)
         {

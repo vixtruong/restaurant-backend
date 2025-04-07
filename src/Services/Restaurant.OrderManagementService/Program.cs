@@ -58,7 +58,6 @@ namespace Restaurant.OrderManagementService
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
             builder.Services.AddScoped<IMenuItemRepository, MenuItemRepository>();
             builder.Services.AddScoped<IKitchenOrderRepository, KitchenOrderRepository>();
-            builder.Services.AddScoped<IInventoryRepository, InventoryRepository>();
 
             var app = builder.Build();
 

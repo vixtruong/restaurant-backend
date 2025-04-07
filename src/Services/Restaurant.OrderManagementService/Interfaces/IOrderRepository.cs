@@ -8,6 +8,8 @@ namespace Restaurant.OrderManagementService.Interfaces
         Task<OrderDto> CreateOrderAsync(OrderRequestDto orderRequestDto);
         Task<OrderDto> GetOrderByIdAsync(int orderId);
         Task<IEnumerable<OrderDto>> GetAllOrdersAsync();
+        Task<int> GetAllNumberOrdersInMonthAsync();
+        Task<int> GetAllNumberOrdersTodayAsync();
         Task<bool> UpdateOrderStatusAsync(int orderId, string status);
         Task<bool> DeleteOrderAsync(int orderId);
     }

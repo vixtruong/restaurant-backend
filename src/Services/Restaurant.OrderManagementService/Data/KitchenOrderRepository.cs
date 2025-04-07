@@ -30,6 +30,7 @@ namespace Restaurant.OrderManagementService.Data
                     Status = o.Status,
                     Quantity = o.OrderItem.Quantity,
                     CookAt = o.CookedAt,
+                    Done = o.Done ?? false,
                     MenuItem = new MenuItemDto
                     {
                         Id = o.OrderItem.MenuItem.Id,
@@ -66,6 +67,7 @@ namespace Restaurant.OrderManagementService.Data
                     Status = o.Status,
                     Quantity = o.OrderItem.Quantity,
                     CookAt = o.CookedAt,
+                    Done = o.Done ?? false,
                     MenuItem = new MenuItemDto
                     {
                         Id = o.OrderItem.MenuItem.Id,
@@ -103,6 +105,7 @@ namespace Restaurant.OrderManagementService.Data
                     Status = o.Status,
                     Quantity = o.OrderItem.Quantity,
                     CookAt = o.CookedAt,
+                    Done = o.Done ?? false,
                     MenuItem = new MenuItemDto
                     {
                         Id = o.OrderItem.MenuItem.Id,
@@ -156,6 +159,17 @@ namespace Restaurant.OrderManagementService.Data
 
             kitchenOrder.Status = "Ready";
             kitchenOrder.CookedAt = DateTime.UtcNow;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> UpdateKitchenOrderDoneAsync(int id)
+        {
+            var kitchenOrder = await _context.KitchenOrders.FindAsync(id);
+
+            if (kitchenOrder == null) return false;
+
+            kitchenOrder.Done = true;
             await _context.SaveChangesAsync();
             return true;
         }

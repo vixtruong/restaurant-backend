@@ -90,80 +90,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Restaurant.OrderManagementService.Controllers.InventoryController",
-    "Method": "GetAllIngredients",
-    "RelativePath": "api/inventory",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Restaurant.OrderManagementService.Controllers.InventoryController",
-    "Method": "GetIngredientById",
-    "RelativePath": "api/inventory/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Restaurant.OrderManagementService.Controllers.InventoryController",
-    "Method": "AddIngredient",
-    "RelativePath": "api/inventory/add",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "Restaurant.OrderManagementService.DTOs.InventoryDto",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Restaurant.OrderManagementService.Controllers.InventoryController",
-    "Method": "DeleteIngredient",
-    "RelativePath": "api/inventory/delete/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Restaurant.OrderManagementService.Controllers.InventoryController",
-    "Method": "UpdateIngredient",
-    "RelativePath": "api/inventory/update",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "Restaurant.OrderManagementService.DTOs.InventoryDto",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
     "Method": "GetAllKitchenOrders",
     "RelativePath": "api/kitchen-orders",
@@ -191,6 +117,22 @@
   },
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
+    "Method": "DeleteKitchenOrder",
+    "RelativePath": "api/kitchen-orders/delete/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
     "Method": "GetKitchenOrdersToday",
     "RelativePath": "api/kitchen-orders/today",
     "HttpMethod": "GET",
@@ -203,6 +145,22 @@
     "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
     "Method": "UpdateKitchenOrderToCooking",
     "RelativePath": "api/kitchen-orders/update-to-cooking/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
+    "Method": "UpdateKitchenOrderDone",
+    "RelativePath": "api/kitchen-orders/update-to-done/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -382,6 +340,26 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.OrderController",
+    "Method": "GetNumberOfOrdersInMonth",
+    "RelativePath": "api/orders/number-orders-month",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.OrderController",
+    "Method": "GetNumberOfOrdersToday",
+    "RelativePath": "api/orders/number-orders-today",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

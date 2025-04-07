@@ -189,6 +189,24 @@ namespace Restaurant.OrderManagementService.Data
                 }).ToListAsync();
         }
 
+        public async Task<int> GetAllNumberOrdersInMonthAsync()
+        {
+            var numberOfOrders = await _context.Orders.Where(o => o.CreatedAt.Value.Month == DateTime.Today.Month
+                                                                  && o.CreatedAt.Value.Year == DateTime.Today.Year).CountAsync();
+
+            return numberOfOrders;
+        }
+
+        public async Task<int> GetAllNumberOrdersTodayAsync()
+        {
+            var numberOfOrders = await _context.Orders.Where(o => o.CreatedAt.Value.Month == DateTime.Today.Month 
+                                                                  && o.CreatedAt.Value.Day == DateTime.Today.Day
+                                                                  && o.CreatedAt.Value.Year == DateTime.Today.Year
+                                                                  ).CountAsync();
+
+            return numberOfOrders;
+        }
+
         // UPDATE ORDER
         public async Task<bool> UpdateOrderStatusAsync(int orderId, string? status)
         {

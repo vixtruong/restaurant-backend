@@ -56,6 +56,8 @@ public partial class RestaurantDbContext : DbContext
                 .HasForeignKey(d => d.OrderItemId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__KitchenOr__Order__3A81B327");
+
+            entity.Property(e => e.Done).HasDefaultValue(false);
         });
 
         modelBuilder.Entity<MenuItem>(entity =>

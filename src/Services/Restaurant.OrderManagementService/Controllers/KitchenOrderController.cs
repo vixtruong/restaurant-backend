@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Restaurant.OrderManagementService.Interfaces;
 
 namespace Restaurant.OrderManagementService.Controllers
@@ -38,6 +39,7 @@ namespace Restaurant.OrderManagementService.Controllers
             return Ok(kitchenOrders);
         }
 
+        [Authorize]
         [HttpPut("update-to-cooking/{id}")]
         public async Task<IActionResult> UpdateKitchenOrderToCooking(int id)
         {
@@ -48,6 +50,7 @@ namespace Restaurant.OrderManagementService.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpPut("update-to-ready/{id}")]
         public async Task<IActionResult> UpdateKitchenOrderToReady(int id)
         {
@@ -58,6 +61,18 @@ namespace Restaurant.OrderManagementService.Controllers
             return NoContent();
         }
 
+        [Authorize]
+        [HttpPut("update-to-done/{id}")]
+        public async Task<IActionResult> UpdateKitchenOrderDone(int id)
+        {
+            var updated = await _kitchenOrderRepository.UpdateKitchenOrderDoneAsync(id);
+
+            if (!updated) return NotFound(new { message = "Kitchen order not found" });
+
+            return NoContent();
+        }
+
+        [Authorize]
         [HttpPut("delete/{id}")]
         public async Task<IActionResult> DeleteKitchenOrder(int id)
         {
