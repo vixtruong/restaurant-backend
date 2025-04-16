@@ -101,6 +101,7 @@ namespace Restaurant.PaymentService.Data
             }
 
             order.Status = "Paid";
+            order.EndAt = DateTime.UtcNow.AddHours(7);
 
             var existPayment = await _context.Payments.Where(p => p.OrderId == payment.OrderId).FirstOrDefaultAsync();
             if (existPayment != null) return payment;
@@ -110,7 +111,7 @@ namespace Restaurant.PaymentService.Data
                 OrderId = payment.OrderId,
                 UserId = payment.UserId,
                 PaymentMethod = payment.PaymentMethod,
-                PaidAt = payment.PaidAt,
+                PaidAt = DateTime.UtcNow.AddHours(7),
                 Amount = payment.Amount,
                 Status = "Paid",
             };

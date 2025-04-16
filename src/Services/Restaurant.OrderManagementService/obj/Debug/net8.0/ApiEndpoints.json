@@ -2,7 +2,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.AuthController",
     "Method": "GenerateAccessToken",
-    "RelativePath": "api/auth",
+    "RelativePath": "api/v1/auth",
     "HttpMethod": "",
     "IsController": true,
     "Order": 0,
@@ -28,7 +28,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.AuthController",
     "Method": "Entry",
-    "RelativePath": "api/auth/entry",
+    "RelativePath": "api/v1/auth/entry",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -44,7 +44,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.AuthController",
     "Method": "Login",
-    "RelativePath": "api/auth/login",
+    "RelativePath": "api/v1/auth/login",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -60,7 +60,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.AuthController",
     "Method": "Logout",
-    "RelativePath": "api/auth/logout",
+    "RelativePath": "api/v1/auth/logout",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -76,7 +76,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.AuthController",
     "Method": "RefreshToken",
-    "RelativePath": "api/auth/refresh",
+    "RelativePath": "api/v1/auth/refresh",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -92,7 +92,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
     "Method": "GetAllKitchenOrders",
-    "RelativePath": "api/kitchen-orders",
+    "RelativePath": "api/v1/kitchen-orders",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -102,7 +102,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
     "Method": "GetKitchenOrdersByOrderId",
-    "RelativePath": "api/kitchen-orders/by-order/{orderId}",
+    "RelativePath": "api/v1/kitchen-orders/by-order/{orderId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -118,7 +118,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
     "Method": "DeleteKitchenOrder",
-    "RelativePath": "api/kitchen-orders/delete/{id}",
+    "RelativePath": "api/v1/kitchen-orders/delete/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -134,7 +134,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
     "Method": "GetKitchenOrdersToday",
-    "RelativePath": "api/kitchen-orders/today",
+    "RelativePath": "api/v1/kitchen-orders/today",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -144,7 +144,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
     "Method": "UpdateKitchenOrderToCooking",
-    "RelativePath": "api/kitchen-orders/update-to-cooking/{id}",
+    "RelativePath": "api/v1/kitchen-orders/update-to-cooking/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -160,7 +160,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
     "Method": "UpdateKitchenOrderDone",
-    "RelativePath": "api/kitchen-orders/update-to-done/{id}",
+    "RelativePath": "api/v1/kitchen-orders/update-to-done/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -176,7 +176,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.KitchenOrderController",
     "Method": "UpdateKitchenOrderToReady",
-    "RelativePath": "api/kitchen-orders/update-to-ready/{id}",
+    "RelativePath": "api/v1/kitchen-orders/update-to-ready/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -192,7 +192,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.MenuItemController",
     "Method": "GetAllMenuItems",
-    "RelativePath": "api/menu-items",
+    "RelativePath": "api/v1/menu-items",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -202,7 +202,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.MenuItemController",
     "Method": "GetMenuItemById",
-    "RelativePath": "api/menu-items/{id}",
+    "RelativePath": "api/v1/menu-items/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -218,7 +218,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.MenuItemController",
     "Method": "DeleteMenuItem",
-    "RelativePath": "api/menu-items/{id}",
+    "RelativePath": "api/v1/menu-items/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -234,7 +234,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.MenuItemController",
     "Method": "CreateMenuItem",
-    "RelativePath": "api/menu-items/create",
+    "RelativePath": "api/v1/menu-items/create",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -250,7 +250,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.MenuItemController",
     "Method": "UpdateMenuItemStatus",
-    "RelativePath": "api/menu-items/update-status/{id}",
+    "RelativePath": "api/v1/menu-items/update-status/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -266,7 +266,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.MenuItemController",
     "Method": "UpdateMenuItem",
-    "RelativePath": "api/menu-items/update/{id}",
+    "RelativePath": "api/v1/menu-items/update/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -287,7 +287,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.OrderController",
     "Method": "GetAllOrders",
-    "RelativePath": "api/orders",
+    "RelativePath": "api/v1/orders",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -297,7 +297,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.OrderController",
     "Method": "GetOrderById",
-    "RelativePath": "api/orders/{id}",
+    "RelativePath": "api/v1/orders/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -313,7 +313,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.OrderController",
     "Method": "CreateOrder",
-    "RelativePath": "api/orders/create",
+    "RelativePath": "api/v1/orders/create",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -329,7 +329,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.OrderController",
     "Method": "GetOrderDetail",
-    "RelativePath": "api/orders/detail/{orderId}",
+    "RelativePath": "api/v1/orders/detail/{orderId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -344,8 +344,40 @@
   },
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.OrderController",
+    "Method": "EndOrder",
+    "RelativePath": "api/v1/orders/end/{orderId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.OrderController",
+    "Method": "HandleEmptyOrder",
+    "RelativePath": "api/v1/orders/handle-empty/{orderId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.OrderController",
     "Method": "GetNumberOfOrdersInMonth",
-    "RelativePath": "api/orders/number-orders-month",
+    "RelativePath": "api/v1/orders/number-orders-month",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -355,7 +387,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.OrderController",
     "Method": "GetNumberOfOrdersToday",
-    "RelativePath": "api/orders/number-orders-today",
+    "RelativePath": "api/v1/orders/number-orders-today",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -365,7 +397,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.UserController",
     "Method": "DeleteUser",
-    "RelativePath": "api/users",
+    "RelativePath": "api/v1/users",
     "HttpMethod": "",
     "IsController": true,
     "Order": 0,
@@ -381,7 +413,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.UserController",
     "Method": "GetUserById",
-    "RelativePath": "api/users/{id}",
+    "RelativePath": "api/v1/users/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -397,7 +429,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.UserController",
     "Method": "RegisterUser",
-    "RelativePath": "api/users/add",
+    "RelativePath": "api/v1/users/add",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -413,7 +445,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.UserController",
     "Method": "GetAllCustomers",
-    "RelativePath": "api/users/customers",
+    "RelativePath": "api/v1/users/customers",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -423,7 +455,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.UserController",
     "Method": "GetAllEmployees",
-    "RelativePath": "api/users/employees",
+    "RelativePath": "api/v1/users/employees",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -433,7 +465,7 @@
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.UserController",
     "Method": "UpdateUser",
-    "RelativePath": "api/users/update",
+    "RelativePath": "api/v1/users/update",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,

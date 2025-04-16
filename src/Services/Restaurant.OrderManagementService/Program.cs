@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Restaurant.Shared.Data;
-using Restaurant.OrderManagementService.Data;
 using Restaurant.OrderManagementService.Interfaces;
 using System.Text;
+using Restaurant.OrderManagementService.Repository;
 
 namespace Restaurant.OrderManagementService
 {

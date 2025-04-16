@@ -9,17 +9,19 @@ using Restaurant.OrderManagementService.Interfaces;
 
 namespace Restaurant.OrderManagementService.Controllers
 {
-    [Route("api/auth")]
+    [Route("api/v1/auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {
         private readonly IConfiguration _configuration;
         private readonly IUserRepository _userRepository;
+        private readonly IOrderRepository _orderRepository;
 
-        public AuthController(IUserRepository userRepository, IConfiguration configuration)
+        public AuthController(IUserRepository userRepository, IConfiguration configuration, IOrderRepository orderRepository)
         {
             _configuration = configuration;
             _userRepository = userRepository;
+            _orderRepository = orderRepository;
         }
 
         // API login
@@ -47,10 +49,21 @@ namespace Restaurant.OrderManagementService.Controllers
         [HttpPost("entry")]
         public async Task<IActionResult> Entry([FromBody] EntryRequestDto? dto)
         {
+            var isAvailableTable = await _orderRepository.IsAvailableTableAsync(dto.TableNumber);
+
+            Console.WriteLine($"Table number: {dto.TableNumber} - Is available: {isAvailableTable}");
+
+            if (!isAvailableTable)
+            {
+                return BadRequest(new { message = "Table is not available" });
+            }
+
             var accessToken = "";
             var refreshToken = "";
 
             var existUser = await _userRepository.GetCustomerByPhoneNumberAsync(dto.PhoneNumber);
+
+            OrderRequestDto order;
 
             if (existUser != null)
             {
@@ -58,22 +71,36 @@ namespace Restaurant.OrderManagementService.Controllers
                 refreshToken = GenerateRefreshToken();
 
                 existUser.RefreshToken = refreshToken;
-                existUser.RefreshTokenExpiryTime = DateTime.UtcNow.AddHours(3);
+                existUser.RefreshTokenExpiryTime = DateTime.UtcNow.AddHours(24);
                 await _userRepository.UpdateUserAsync(existUser);
 
-                return Ok(new { accessToken = accessToken, refreshToken = refreshToken });
+                order = new OrderRequestDto
+                {
+                    CustomerId = existUser.Id,
+                    TableNumber = dto.TableNumber
+                };
+
+                var newOrder1 = await _orderRepository.CreateOrderAsync(order);
+                return Ok(new { accessToken = accessToken, refreshToken = refreshToken, orderId = newOrder1.Id });
             }
 
             var user = await _userRepository.AddCustomerAsync(dto);
+            order = new OrderRequestDto
+            {
+                CustomerId = user.Id,
+                TableNumber = dto.TableNumber
+            };
+
+            var newOrder2 = await _orderRepository.CreateOrderAsync(order);
 
             accessToken = GenerateAccessToken(user, _configuration);
             refreshToken = GenerateRefreshToken();
 
             user.RefreshToken = refreshToken;
-            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(3);
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddHours(24);
             await _userRepository.UpdateUserAsync(user);
 
-            return Ok(new { accessToken = accessToken, refreshToken = refreshToken });
+            return Ok(new { accessToken = accessToken, refreshToken = refreshToken, orderId = newOrder2.Id });
         }
 
         // REFRESH TOKEN
@@ -90,7 +117,7 @@ namespace Restaurant.OrderManagementService.Controllers
             var newRefreshToken = GenerateRefreshToken();
 
             user.RefreshToken = newRefreshToken;
-            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(15);
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(30);
             await _userRepository.UpdateUserAsync(user);
 
             return Ok(new { accessToken = newAccessToken, refreshToken = newRefreshToken });
@@ -136,7 +163,7 @@ namespace Restaurant.OrderManagementService.Controllers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddSeconds(10),
+                Expires = DateTime.UtcNow.AddMinutes(30),
                 Audience = audience,
                 Issuer = issuer,
                 SigningCredentials = credentials

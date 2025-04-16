@@ -5,7 +5,7 @@ using Restaurant.OrderManagementService.Interfaces;
 
 namespace Restaurant.OrderManagementService.Controllers
 {
-    [Route("api/users")]
+    [Route("api/v1/users")]
     [ApiController]
     public class UserController : ControllerBase
     {

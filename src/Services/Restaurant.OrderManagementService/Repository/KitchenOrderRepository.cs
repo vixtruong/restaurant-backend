@@ -4,7 +4,7 @@ using Restaurant.OrderManagementService.Interfaces;
 using Restaurant.Shared.Data;
 using Restaurant.Shared.Models;
 
-namespace Restaurant.OrderManagementService.Data
+namespace Restaurant.OrderManagementService.Repository
 {
     public class KitchenOrderRepository : IKitchenOrderRepository
     {
@@ -158,7 +158,7 @@ namespace Restaurant.OrderManagementService.Data
             if (kitchenOrder == null) return false;
 
             kitchenOrder.Status = "Ready";
-            kitchenOrder.CookedAt = DateTime.UtcNow;
+            kitchenOrder.CookedAt = DateTime.UtcNow.AddHours(7);
             await _context.SaveChangesAsync();
             return true;
         }

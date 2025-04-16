@@ -16,6 +16,7 @@ public partial class Order
     public decimal? TotalPrice { get; set; }
 
     public DateTime? CreatedAt { get; set; }
+    public DateTime? EndAt { get; set; }
 
     public virtual User? Customer { get; set; }
 

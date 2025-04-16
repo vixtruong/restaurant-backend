@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Restaurant.Shared.Data;
-using Restaurant.Shared.Models;
 using Restaurant.OrderManagementService.DTOs;
 using Restaurant.OrderManagementService.Interfaces;
+using Restaurant.Shared.Data;
+using Restaurant.Shared.Models;
 
-namespace Restaurant.OrderManagementService.Data
+namespace Restaurant.OrderManagementService.Repository
 {
     public class UserRepository : IUserRepository
     {
@@ -128,7 +128,7 @@ namespace Restaurant.OrderManagementService.Data
                 PhoneNumber = userDto.PhoneNumber,
                 RoleId = userDto.RoleId,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDto.PhoneNumber),
-                CreatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow.AddHours(7),
             };
 
             await _context.Users.AddAsync(user);
@@ -143,7 +143,7 @@ namespace Restaurant.OrderManagementService.Data
                 Email = "@customer.local",
                 PhoneNumber = dto.PhoneNumber,
                 RoleId = 4,
-                CreatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow.AddHours(7),
             };
 
             await _context.Users.AddAsync(user);

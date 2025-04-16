@@ -210,13 +210,9 @@ D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Ser
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
-D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\bin\Debug\net8.0\Microsoft.OpenApi.dll
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\bin\Debug\net8.0\Mono.TextTemplating.dll
-D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
-D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\bin\Debug\net8.0\System.ClientModel.dll
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\bin\Debug\net8.0\System.CodeDom.dll
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\bin\Debug\net8.0\System.Composition.AttributedModel.dll
@@ -322,7 +318,6 @@ D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Ser
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\obj\Debug\net8.0\Restaurant.PaymentService.AssemblyInfoInputs.cache
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\obj\Debug\net8.0\Restaurant.PaymentService.AssemblyInfo.cs
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\obj\Debug\net8.0\Restaurant.PaymentService.csproj.CoreCompileInputs.cache
-D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\obj\Debug\net8.0\Restaurant.PaymentService.MvcApplicationPartsAssemblyInfo.cs
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\obj\Debug\net8.0\Restaurant.PaymentService.MvcApplicationPartsAssemblyInfo.cache
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\obj\Debug\net8.0\Restaurant.PaymentService.sourcelink.json
 D:\User\Desktop\III - HK2\Microservice\Midterm\Project\RestaurantBackend\src\Services\Restaurant.PaymentService\obj\Debug\net8.0\staticwebassets.build.json

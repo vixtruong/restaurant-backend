@@ -4,8 +4,7 @@ using Restaurant.OrderManagementService.Interfaces;
 
 namespace Restaurant.OrderManagementService.Controllers
 {
-    [Route("api/orders")]
-    [Authorize]
+    [Route("api/v1/orders")]
     [ApiController]
     public class OrderController : Controller
     {
@@ -16,6 +15,7 @@ namespace Restaurant.OrderManagementService.Controllers
             _orderRepository = orderRepository;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllOrders()
         {
@@ -24,6 +24,7 @@ namespace Restaurant.OrderManagementService.Controllers
             return Ok(orders);
         }
 
+        [Authorize]
         [HttpGet("number-orders-month")]
         public async Task<IActionResult> GetNumberOfOrdersInMonth()
         {
@@ -32,6 +33,7 @@ namespace Restaurant.OrderManagementService.Controllers
             return Ok(numberOfOrders);
         }
 
+        [Authorize]
         [HttpGet("number-orders-today")]
         public async Task<IActionResult> GetNumberOfOrdersToday()
         {
@@ -40,6 +42,7 @@ namespace Restaurant.OrderManagementService.Controllers
             return Ok(numberOfOrders);
         }
 
+        [Authorize]
         [HttpGet("detail/{orderId}")]
         public async Task<IActionResult> GetOrderDetail(int orderId)
         {
@@ -50,6 +53,7 @@ namespace Restaurant.OrderManagementService.Controllers
             return Ok(orderDetail);
         }
 
+        [Authorize]
         [HttpPost("create")]
         public async Task<IActionResult> CreateOrder([FromBody] OrderRequestDto? request)
         {
@@ -63,6 +67,7 @@ namespace Restaurant.OrderManagementService.Controllers
             return CreatedAtAction(nameof(GetOrderById), new { id = createdOrder.Id }, createdOrder);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOrderById(int id)
         {
@@ -70,6 +75,25 @@ namespace Restaurant.OrderManagementService.Controllers
             if (order == null) return NotFound(new { message = "Order not found" });
 
             return Ok(order);
+        }
+
+        [Authorize]
+        [HttpPut("end/{orderId}")]
+        public async Task<IActionResult> EndOrder(int orderId)
+        {
+            var result = await _orderRepository.UpdateOrderToEndAsync(orderId);
+            if (!result) return NotFound(new { message = "Order not found" });
+
+            return NoContent();
+        }
+
+        [HttpPut("handle-empty/{orderId}")]
+        public async Task<IActionResult> HandleEmptyOrder(int orderId)
+        {
+            var result = await _orderRepository.HandleEmptyOrderAsync(orderId);
+            if (!result) return BadRequest(new { message = "Order not empty." });
+
+            return NoContent();
         }
     }
 }

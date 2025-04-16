@@ -4,7 +4,7 @@ using Restaurant.OrderManagementService.Interfaces;
 using Restaurant.Shared.Data;
 using Restaurant.Shared.Models;
 
-namespace Restaurant.OrderManagementService.Data
+namespace Restaurant.OrderManagementService.Repository
 {
     public class MenuItemRepository : IMenuItemRepository
     { 

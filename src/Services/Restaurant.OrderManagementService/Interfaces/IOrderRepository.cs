@@ -10,7 +10,10 @@ namespace Restaurant.OrderManagementService.Interfaces
         Task<IEnumerable<OrderDto>> GetAllOrdersAsync();
         Task<int> GetAllNumberOrdersInMonthAsync();
         Task<int> GetAllNumberOrdersTodayAsync();
+        Task<bool> UpdateOrderToEndAsync(int orderId);
         Task<bool> UpdateOrderStatusAsync(int orderId, string status);
         Task<bool> DeleteOrderAsync(int orderId);
+        Task<bool> IsAvailableTableAsync(int tableNumber);
+        Task<bool> HandleEmptyOrderAsync(int orderId);
     }
 }
