@@ -188,10 +188,11 @@ namespace Restaurant.OrderManagementService.Repository
                     : new Order
                     {
                         CustomerId = request.CustomerId,
-                        TableNumber = request.TableNumber,
+                        TableNumber = request.TableNumber ?? 0,
                         Status = "Unpaid",
                         TotalPrice = 0,
-                        CreatedAt = DateTime.UtcNow.AddHours(7)
+                        CreatedAt = DateTime.UtcNow.AddHours(7),
+                        PaymentRequest = false,
                     };
 
                 if (!request.OrderId.HasValue)
@@ -272,7 +273,8 @@ namespace Restaurant.OrderManagementService.Repository
             CustomerName = order.Customer?.FullName,
             Status = order.Status,
             TableNumber = order.TableNumber,
-            TotalPrice = order.TotalPrice
+            TotalPrice = order.TotalPrice,
+            PaymentRequest = order.PaymentRequest
         };
 
         // GET ORDER BY ID
@@ -307,7 +309,8 @@ namespace Restaurant.OrderManagementService.Repository
                     Status = o.Status,
                     TotalPrice = o.TotalPrice,
                     CreatedAt = o.CreatedAt,
-                    EndAt = o.EndAt
+                    EndAt = o.EndAt,
+                    PaymentRequest = o.PaymentRequest
                 }).ToListAsync();
         }
 
@@ -386,7 +389,7 @@ namespace Restaurant.OrderManagementService.Repository
                 .OrderByDescending(o => o.CreatedAt)
                 .FirstOrDefaultAsync();
 
-            return latestOrder!.EndAt != null || latestOrder.Status != "Unpaid";
+            return latestOrder == null || latestOrder!.EndAt != null || latestOrder.Status != "Unpaid";
         }
 
         public async Task<bool> HandleEmptyOrderAsync(int orderId)
@@ -401,6 +404,18 @@ namespace Restaurant.OrderManagementService.Repository
             }
 
             return false;
+        }
+
+        public async Task<bool> PaymentRequestAsync(int orderId)
+        {
+            var order = await _context.Orders.FindAsync(orderId);
+
+            if (order == null) return false;
+
+            order.PaymentRequest = true;
+
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

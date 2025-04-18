@@ -15,5 +15,6 @@ namespace Restaurant.OrderManagementService.Interfaces
         Task<bool> DeleteOrderAsync(int orderId);
         Task<bool> IsAvailableTableAsync(int tableNumber);
         Task<bool> HandleEmptyOrderAsync(int orderId);
+        Task<bool> PaymentRequestAsync(int orderId);
     }
 }

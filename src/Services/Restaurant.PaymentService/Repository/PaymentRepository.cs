@@ -38,7 +38,9 @@ namespace Restaurant.PaymentService.Data
         {
             return await _context.Payments
                 .Include(p => p.User)
-                .Where(p => p.PaidAt == DateTime.Today)
+                .Where(p => p.PaidAt.Value.Day == DateTime.Now.AddHours(7).Day
+                    && p.PaidAt.Value.Month == DateTime.Now.AddHours(7).Month
+                    && p.PaidAt.Value.Year == DateTime.Now.AddHours(7).Year)
                 .Select(p => new PaymentDto
                 {
                     Id = p.Id,
@@ -119,7 +121,17 @@ namespace Restaurant.PaymentService.Data
             await _context.Payments.AddAsync(newPayment);
             await _context.SaveChangesAsync();
 
-            return payment;
+            return new PaymentDto
+            {
+                Id = newPayment.Id,
+                OrderId = newPayment.OrderId,
+                Amount = newPayment.Amount,
+                UserId = newPayment.UserId,
+                UserName = payment.UserName,
+                PaymentMethod = newPayment.PaymentMethod,
+                PaidAt = newPayment.PaidAt,
+                Status = newPayment.Status,
+            };
         }
 
         public async Task<bool> UpdatePaymentStatusCancelAsync(int id)

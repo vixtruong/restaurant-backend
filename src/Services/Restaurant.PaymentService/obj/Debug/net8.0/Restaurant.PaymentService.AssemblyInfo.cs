@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Restaurant.PaymentService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f52da4e08b220bc248293b6324e386f6aff7e77")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5286f82ed0859d60454e5429fd7ac216cb51b75")]
 [assembly: System.Reflection.AssemblyProductAttribute("Restaurant.PaymentService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Restaurant.PaymentService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

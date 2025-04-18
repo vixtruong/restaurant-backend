@@ -28,6 +28,7 @@ namespace Restaurant.OrderManagementService.Repository
                 FullName = user.FullName,
                 PhoneNumber = user.PhoneNumber,
                 RefreshToken = user.RefreshToken,
+                JoinTime = user.CreatedAt,
                 RoleName = "Customer",
                 RefreshTokenExpiryTime = user.RefreshTokenExpiryTime
             };
@@ -77,6 +78,7 @@ namespace Restaurant.OrderManagementService.Repository
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 RoleName = user.Role.RoleName,
+                JoinTime = user.CreatedAt,
             };
         }
 

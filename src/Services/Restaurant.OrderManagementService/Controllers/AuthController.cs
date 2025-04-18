@@ -107,6 +107,11 @@ namespace Restaurant.OrderManagementService.Controllers
         [HttpPost("refresh")]
         public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequestDto tokenRequest)
         {
+            if (tokenRequest.RefreshToken == null)
+            {
+                Console.WriteLine();
+            }
+
             var user = await _userRepository.GetUserByRefreshTokenAsync(tokenRequest.RefreshToken);
             if (user == null || user.RefreshTokenExpiryTime < DateTime.UtcNow)
             {

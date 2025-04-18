@@ -95,5 +95,14 @@ namespace Restaurant.OrderManagementService.Controllers
 
             return NoContent();
         }
+
+        [HttpPut("payment-request/{orderId}")]
+        public async Task<IActionResult> PaymentRequest(int orderId)
+        {
+            var result = await _orderRepository.PaymentRequestAsync(orderId);
+            if (!result) return BadRequest(new { message = "Order not empty." });
+
+            return NoContent();
+        }
     }
 }

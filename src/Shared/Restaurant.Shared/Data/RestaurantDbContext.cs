@@ -83,6 +83,7 @@ public partial class RestaurantDbContext : DbContext
             entity.Property(e => e.TotalPrice)
                 .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.PaymentRequest).HasDefaultValue(false);
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.CustomerId)
