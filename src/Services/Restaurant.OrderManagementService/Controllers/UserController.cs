@@ -86,5 +86,18 @@ namespace Restaurant.OrderManagementService.Controllers
 
             return NoContent();
         }
+
+        [HttpPut("{id}/toggle-active")]
+        public async Task<IActionResult> ToggleUserActiveStatus(int id)
+        {
+            var success = await _userRepository.ToggleUserActiveStatusAsync(id);
+
+            if (!success)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+
+            return NoContent();
+        }
     }
 }

@@ -444,6 +444,22 @@
   },
   {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.UserController",
+    "Method": "ToggleUserActiveStatus",
+    "RelativePath": "api/v1/users/{id}/toggle-active",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.UserController",
     "Method": "RegisterUser",
     "RelativePath": "api/v1/users/add",
     "HttpMethod": "POST",

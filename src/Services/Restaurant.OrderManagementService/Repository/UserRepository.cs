@@ -46,7 +46,8 @@ namespace Restaurant.OrderManagementService.Repository
                     Email = user.Email,
                     PhoneNumber = user.PhoneNumber,
                     RoleName = user.Role.RoleName,
-                    JoinTime = user.CreatedAt
+                    JoinTime = user.CreatedAt,
+                    Active = user.Active
                 }).ToListAsync();
         }
 
@@ -200,7 +201,22 @@ namespace Restaurant.OrderManagementService.Repository
                 return false;
             }
 
-            return BCrypt.Net.BCrypt.Verify(loginRequestDto.Password, user.PasswordHash);
+            return BCrypt.Net.BCrypt.Verify(loginRequestDto.Password, user.PasswordHash) && user.Active;
+        }
+
+        public async Task<bool> ToggleUserActiveStatusAsync(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            user.Active = !user.Active;
+            await _context.SaveChangesAsync();
+
+            return true;
         }
     }
 }

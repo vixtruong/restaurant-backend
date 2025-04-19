@@ -15,5 +15,6 @@ namespace Restaurant.OrderManagementService.Interfaces
         Task<bool> UpdateUserAsync(UserDto userDto);
         Task<bool> DeleteUserAsync(int id);
         Task<bool> VerifyAccount(LoginRequestDto loginRequestDto);
+        Task<bool> ToggleUserActiveStatusAsync(int id);
     }
 }

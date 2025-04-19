@@ -14,8 +14,6 @@ public partial class RestaurantDbContext : DbContext
     {
     }
 
-    public virtual DbSet<Inventory> Inventories { get; set; }
-
     public virtual DbSet<KitchenOrder> KitchenOrders { get; set; }
 
     public virtual DbSet<MenuItem> MenuItems { get; set; }
@@ -32,18 +30,6 @@ public partial class RestaurantDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Inventory>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__Inventor__3214EC07E3CCEF1E");
-
-            entity.ToTable("Inventory");
-
-            entity.Property(e => e.IngredientName).HasMaxLength(100);
-            entity.Property(e => e.LastUpdated).HasDefaultValueSql("(sysdatetime())");
-            entity.Property(e => e.Quantity).HasColumnType("decimal(10, 2)");
-            entity.Property(e => e.Unit).HasMaxLength(20);
-        });
-
         modelBuilder.Entity<KitchenOrder>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__KitchenO__3214EC077027D28E");
@@ -145,6 +131,7 @@ public partial class RestaurantDbContext : DbContext
             entity.Property(e => e.PasswordHash).HasMaxLength(255);
             entity.Property(e => e.PhoneNumber).HasMaxLength(15);
             entity.Property(e => e.RefreshToken).HasMaxLength(500);
+            entity.Property(e => e.Active).HasDefaultValue(true);
 
 
             entity.HasOne(d => d.Role).WithMany(p => p.Users)
