@@ -66,6 +66,7 @@ namespace Restaurant.OrderManagementService.Repository
                     tableNumber = o.OrderItem.Order.TableNumber,
                     Status = o.Status,
                     Quantity = o.OrderItem.Quantity,
+                    Notes = o.OrderItem.Notes,
                     CookAt = o.CookedAt,
                     Done = o.Done ?? false,
                     MenuItem = new MenuItemDto

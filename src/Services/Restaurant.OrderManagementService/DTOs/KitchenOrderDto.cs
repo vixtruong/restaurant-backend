@@ -7,6 +7,7 @@
         public int? tableNumber { get; set; }
         public MenuItemDto? MenuItem { get; set; }
         public int? Quantity { get; set; }
+        public string? Notes { get; set; }
         public string? Status { get; set; }
         public DateTime? CookAt { get; set; }
         public bool? Done { get; set; }
