@@ -5,6 +5,7 @@ using Restaurant.Shared.Data;
 using System.Text;
 using Restaurant.PaymentService.Data;
 using Restaurant.PaymentService.Interfaces;
+using Restaurant.Shared.Middlewares;
 
 namespace Restaurant.PaymentService
 {
@@ -18,7 +19,11 @@ namespace Restaurant.PaymentService
 
             // Thêm DbContext vào Dependency Injection
             builder.Services.AddDbContext<RestaurantDbContext>(options =>
-                options.UseSqlServer(connectionString));
+            {
+                options.UseSqlServer(connectionString)
+                    .EnableSensitiveDataLogging(false)
+                    .LogTo(_ => { });
+            });
 
             // Config Authentication with JWT
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -57,9 +62,13 @@ namespace Restaurant.PaymentService
 
             var app = builder.Build();
 
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
+
             app.UseHttpsRedirection();
 
             app.UseCors("AllowAll");
+
+            app.UseMiddleware<RequestTimingMiddleware>();
 
             app.UseAuthentication();
             app.UseAuthorization();

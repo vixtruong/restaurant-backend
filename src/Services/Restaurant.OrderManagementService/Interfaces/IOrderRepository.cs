@@ -1,10 +1,12 @@
 ﻿using Restaurant.OrderManagementService.DTOs;
+using Restaurant.Shared.Models;
 
 namespace Restaurant.OrderManagementService.Interfaces
 {
     public interface IOrderRepository
     {
         Task<OrderDetailDto?> GetOrderDetailAsync(int orderId);
+        Task<List<Table>> GetTables();
         Task<OrderDto> CreateOrderAsync(OrderRequestDto orderRequestDto);
         Task<OrderDto> GetOrderByIdAsync(int orderId);
         Task<IEnumerable<OrderDto>> GetAllOrdersAsync();

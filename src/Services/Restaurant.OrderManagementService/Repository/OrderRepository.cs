@@ -52,6 +52,11 @@ namespace Restaurant.OrderManagementService.Repository
             return orderDetail;
         }
 
+        public async Task<List<Table>> GetTables()
+        {
+            return await _context.Tables.ToListAsync();
+        }
+
         //public async Task<OrderDto> CreateOrderAsync(OrderRequestDto request)
         //{
         //    using var transaction = await _context.Database.BeginTransactionAsync();
@@ -199,6 +204,27 @@ namespace Restaurant.OrderManagementService.Repository
                 {
                     _context.Orders.Add(newOrder);
                     await _context.SaveChangesAsync();
+
+                    if (request.TableNumber.HasValue)
+                    {
+                        var table = await _context.Tables.FirstOrDefaultAsync(t => t.Number == request.TableNumber);
+
+                        if (table == null)
+                            throw new KeyNotFoundException($"Table {request.TableNumber.Value} not found");
+
+                        var tableHistory = new TableHistory
+                        {
+                            UserId = request.CustomerId ?? 0,
+                            TableId = table.Id,
+                            CheckInTime = DateTime.UtcNow.AddHours(7),
+                            CheckOutTime = null
+                        };
+
+                        table.Available = false;
+                        _context.TableHistories.Add(tableHistory);
+                        _context.Tables.Update(table);
+                        await _context.SaveChangesAsync();
+                    }
                 }
 
                 // Early return if no items
@@ -384,27 +410,48 @@ namespace Restaurant.OrderManagementService.Repository
             if (tableNumber <= 0)
                 throw new ArgumentException("Table number must be positive.", nameof(tableNumber));
 
-            var latestOrder = await _context.Orders
-                .Where(o => o.TableNumber == tableNumber)
-                .OrderByDescending(o => o.CreatedAt)
-                .FirstOrDefaultAsync();
+            var table = await _context.Tables.FirstOrDefaultAsync(t => t.Number == tableNumber);
 
-            return latestOrder == null || latestOrder!.EndAt != null || latestOrder.Status != "Unpaid";
+            if (table == null) return false;
+
+            return table.Available;
         }
 
         public async Task<bool> HandleEmptyOrderAsync(int orderId)
         {
             var order = await _context.Orders.FindAsync(orderId);
 
-            if (order!.TotalPrice == 0)
+            if (order == null)
+                throw new KeyNotFoundException($"Order {orderId} not found");
+
+            if (order.TotalPrice == 0)
             {
+                var table = await _context.Tables.FirstOrDefaultAsync(t => t.Number == order.TableNumber);
+
+                if (table != null)
+                {
+                    table.Available = true;
+
+                    var latestHistory = await _context.TableHistories
+                        .Where(h => h.TableId == table.Id && h.CheckOutTime == null)
+                        .OrderByDescending(h => h.CheckInTime)
+                        .FirstOrDefaultAsync();
+
+                    if (latestHistory != null)
+                    {
+                        latestHistory.CheckOutTime = DateTime.UtcNow.AddHours(7);
+                    }
+                }
+
                 _context.Orders.Remove(order);
                 await _context.SaveChangesAsync();
+
                 return true;
             }
 
             return false;
         }
+
 
         public async Task<bool> PaymentRequestAsync(int orderId)
         {

@@ -51,8 +51,6 @@ namespace Restaurant.OrderManagementService.Controllers
         {
             var isAvailableTable = await _orderRepository.IsAvailableTableAsync(dto.TableNumber);
 
-            Console.WriteLine($"Table number: {dto.TableNumber} - Is available: {isAvailableTable}");
-
             if (!isAvailableTable)
             {
                 return BadRequest(new { message = "Table is not available" });

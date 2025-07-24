@@ -411,6 +411,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Restaurant.OrderManagementService.Controllers.OrderController",
+    "Method": "GetTables",
+    "RelativePath": "api/v1/orders/tables",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Restaurant.OrderManagementService.Controllers.UserController",
     "Method": "DeleteUser",
     "RelativePath": "api/v1/users",

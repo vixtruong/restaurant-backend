@@ -29,5 +29,7 @@ public partial class User
 
     public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
 
+    public ICollection<TableHistory> TableHistories { get; set; } = new List<TableHistory>();
+
     public virtual Role? Role { get; set; }
 }

@@ -28,6 +28,10 @@ public partial class RestaurantDbContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<Table> Tables { get; set; }
+
+    public virtual DbSet<TableHistory> TableHistories { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<KitchenOrder>(entity =>
@@ -137,6 +141,30 @@ public partial class RestaurantDbContext : DbContext
             entity.HasOne(d => d.Role).WithMany(p => p.Users)
                 .HasForeignKey(d => d.RoleId)
                 .HasConstraintName("FK__Users__RoleId__286302EC");
+        });
+
+        // Tables
+        modelBuilder.Entity<Table>(entity =>
+        {
+            entity.ToTable("Tables");
+            entity.HasKey(t => t.Id);
+            entity.Property(t => t.Number).IsRequired();
+            entity.Property(t => t.Available).HasDefaultValue(false);
+        });
+
+        // TableHistory
+        modelBuilder.Entity<TableHistory>(entity =>
+        {
+            entity.ToTable("TableHistory");
+            entity.HasKey(th => th.Id);
+            entity.Property(th => th.CheckInTime).HasDefaultValueSql("GETDATE()");
+            entity.HasOne(th => th.User)
+                .WithMany(u => u.TableHistories)
+                .HasForeignKey(th => th.UserId);
+
+            entity.HasOne(th => th.Table)
+                .WithMany(t => t.TableHistories)
+                .HasForeignKey(th => th.TableId);
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -5,6 +5,7 @@ using Restaurant.Shared.Data;
 using Restaurant.OrderManagementService.Interfaces;
 using System.Text;
 using Restaurant.OrderManagementService.Repository;
+using Restaurant.Shared.Middlewares;
 
 namespace Restaurant.OrderManagementService
 {
@@ -19,8 +20,12 @@ namespace Restaurant.OrderManagementService
 
             // Add DbContext into Dependency Injection
             builder.Services.AddDbContext<RestaurantDbContext>(options =>
-                options.UseSqlServer(connectionString));
-
+            {
+                options.UseSqlServer(connectionString)
+                    .EnableSensitiveDataLogging(false)
+                    .LogTo(_ => { });
+            });
+            
             // Config Authentication with JWT
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, o =>
@@ -61,9 +66,13 @@ namespace Restaurant.OrderManagementService
 
             var app = builder.Build();
 
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
+
             app.UseHttpsRedirection();
 
             app.UseCors("AllowAll");
+
+            app.UseMiddleware<RequestTimingMiddleware>();
 
             app.UseAuthentication();
             app.UseAuthorization();

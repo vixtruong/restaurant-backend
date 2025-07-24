@@ -96,17 +96,39 @@ namespace Restaurant.PaymentService.Data
         public async Task<PaymentDto> AddPaymentAsync(PaymentDto payment)
         {
             var order = await _context.Orders.FindAsync(payment.OrderId);
-
             if (order == null)
             {
                 return new PaymentDto();
             }
 
+            var existPayment = await _context.Payments
+                .FirstOrDefaultAsync(p => p.OrderId == payment.OrderId);
+            if (existPayment != null)
+            {
+                return new PaymentDto
+                {
+                    Id = existPayment.Id,
+                    OrderId = existPayment.OrderId,
+                    Amount = existPayment.Amount,
+                    UserId = existPayment.UserId,
+                    UserName = payment.UserName,
+                    PaymentMethod = existPayment.PaymentMethod,
+                    PaidAt = existPayment.PaidAt,
+                    Status = existPayment.Status,
+                };
+            }
+
             order.Status = "Paid";
             order.EndAt = DateTime.UtcNow.AddHours(7);
 
-            var existPayment = await _context.Payments.Where(p => p.OrderId == payment.OrderId).FirstOrDefaultAsync();
-            if (existPayment != null) return payment;
+            var table = await _context.Tables
+                .FirstOrDefaultAsync(t => t.Number == order.TableNumber);
+
+            if (table != null)
+            {
+                table.Available = true;
+                _context.Tables.Update(table);
+            }
 
             var newPayment = new Payment
             {
@@ -119,6 +141,7 @@ namespace Restaurant.PaymentService.Data
             };
 
             await _context.Payments.AddAsync(newPayment);
+
             await _context.SaveChangesAsync();
 
             return new PaymentDto
@@ -133,6 +156,7 @@ namespace Restaurant.PaymentService.Data
                 Status = newPayment.Status,
             };
         }
+
 
         public async Task<bool> UpdatePaymentStatusCancelAsync(int id)
         {

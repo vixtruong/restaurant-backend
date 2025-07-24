@@ -15,6 +15,13 @@ namespace Restaurant.OrderManagementService.Controllers
             _orderRepository = orderRepository;
         }
 
+        [HttpGet("tables")]
+        public async Task<IActionResult> GetTables()
+        {
+            var tables = await _orderRepository.GetTables();
+            return Ok(tables);
+        }
+
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllOrders()
