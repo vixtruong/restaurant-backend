@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace Restaurant.Shared.Models
 {
@@ -13,6 +10,9 @@ namespace Restaurant.Shared.Models
         public int Number { get; set; }
 
         public bool Available { get; set; }
+
+        [NotMapped]
+        public string? BookedBy { get; set; }
 
         public ICollection<TableHistory> TableHistories { get; set; } = new List<TableHistory>();
     }

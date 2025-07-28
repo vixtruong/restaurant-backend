@@ -19,6 +19,7 @@ namespace Restaurant.OrderManagementService.Controllers
         public async Task<IActionResult> GetTables()
         {
             var tables = await _orderRepository.GetTables();
+
             return Ok(tables);
         }
 
