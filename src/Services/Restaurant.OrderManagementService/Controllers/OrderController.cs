@@ -56,7 +56,7 @@ namespace Restaurant.OrderManagementService.Controllers
         {
             var orderDetail = await _orderRepository.GetOrderDetailAsync(orderId);
 
-            if (orderDetail == null) return NotFound(new { message = "Order not found." });
+            //if (orderDetail == null) return NotFound(new { message = "Order not found." });
 
             return Ok(orderDetail);
         }

@@ -5,7 +5,9 @@ using Restaurant.Shared.Data;
 using Restaurant.OrderManagementService.Interfaces;
 using System.Text;
 using Restaurant.OrderManagementService.Repository;
+using Restaurant.OrderManagementService.Workers;
 using Restaurant.Shared.Middlewares;
+using Restaurant.Shared.Models;
 
 namespace Restaurant.OrderManagementService
 {
@@ -62,12 +64,14 @@ namespace Restaurant.OrderManagementService
                     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
                 });
 
-
             // Register services
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
             builder.Services.AddScoped<IMenuItemRepository, MenuItemRepository>();
             builder.Services.AddScoped<IKitchenOrderRepository, KitchenOrderRepository>();
+
+            // Register background services
+            builder.Services.AddHostedService<OrderTimeoutHandler>();
 
             var app = builder.Build();
 

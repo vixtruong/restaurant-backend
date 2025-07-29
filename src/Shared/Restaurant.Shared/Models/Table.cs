@@ -11,9 +11,6 @@ namespace Restaurant.Shared.Models
 
         public bool Available { get; set; }
 
-        [NotMapped]
-        public string? BookedBy { get; set; }
-
         public ICollection<TableHistory> TableHistories { get; set; } = new List<TableHistory>();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Restaurant.OrderManagementService.DTOs;
 using Restaurant.OrderManagementService.Interfaces;
+using Restaurant.Shared.Core;
 using Restaurant.Shared.Data;
 using Restaurant.Shared.Models;
 
@@ -34,6 +35,7 @@ namespace Restaurant.OrderManagementService.Repository
                 CustomerId = order?.CustomerId,
                 CustomerName = order?.Customer?.FullName,
                 TableNumber = order?.TableNumber,
+                IsPaid = order?.Status == "Paid" ? true : false,
                 OrderItems = new List<OrderItemDetailDto>()
             };
 
@@ -52,9 +54,40 @@ namespace Restaurant.OrderManagementService.Repository
             return orderDetail;
         }
 
-        public async Task<List<Table>> GetTables()
+        public async Task<List<TableDto>> GetTables()
         {
-            return await _context.Tables.ToListAsync();
+            var tables = await _context.Tables.ToListAsync();
+
+            var orders = await _context.Orders
+                .Where(o => o.EndAt == null || o.Status == "Unpaid")
+                .Include(o => o.Customer)
+                .ToListAsync();
+
+            var result = tables.Select(t =>
+            {
+                var order = orders.FirstOrDefault(o => o.TableNumber == t.Number);
+
+                if (order != null)
+                {
+                    return new TableDto
+                    {
+                        Id = t.Id,
+                        Number = t.Number,
+                        Available = t.Available,
+                        BookedBy = order.Customer?.FullName ?? null,
+                        OrderId = order.Id
+                    };
+                }
+
+                return new TableDto
+                {
+                    Id = t.Id,
+                    Number = t.Number,
+                    Available = t.Available,
+                };
+            }).ToList();
+
+            return result;
         }
 
         //public async Task<OrderDto> CreateOrderAsync(OrderRequestDto request)
@@ -380,6 +413,37 @@ namespace Restaurant.OrderManagementService.Repository
 
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public async Task HandleOrderTimeout()
+        {
+            var timeoutThreshold = DateTime.UtcNow.AddHours(7).AddHours(-AppConstant.ORDER_TIMEOUT_HOURS);
+
+            var orders = await _context.Orders
+                .Where(o => o.EndAt == null && o.CreatedAt < timeoutThreshold)
+                .Include(o => o.OrderItems)
+                .ToListAsync();
+
+            if (orders.Count <= 0)
+                return;
+
+            var tableNumbers = orders
+                .Select(o => o.TableNumber)
+                .Distinct()
+                .ToList();
+
+            var tables = await _context.Tables
+                .Where(t => tableNumbers.Contains(t.Number))
+                .ToListAsync();
+
+            foreach (var table in tables)
+            {
+                table.Available = true;
+            }
+
+            _context.Orders.RemoveRange(orders);
+
+            await _context.SaveChangesAsync();
         }
 
         // UPDATE ORDER

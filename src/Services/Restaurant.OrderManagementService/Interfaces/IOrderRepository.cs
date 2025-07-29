@@ -6,13 +6,14 @@ namespace Restaurant.OrderManagementService.Interfaces
     public interface IOrderRepository
     {
         Task<OrderDetailDto?> GetOrderDetailAsync(int orderId);
-        Task<List<Table>> GetTables();
+        Task<List<TableDto>> GetTables();
         Task<OrderDto> CreateOrderAsync(OrderRequestDto orderRequestDto);
         Task<OrderDto> GetOrderByIdAsync(int orderId);
         Task<IEnumerable<OrderDto>> GetAllOrdersAsync();
         Task<int> GetAllNumberOrdersInMonthAsync();
         Task<int> GetAllNumberOrdersTodayAsync();
         Task<bool> UpdateOrderToEndAsync(int orderId);
+        Task HandleOrderTimeout();
         Task<bool> UpdateOrderStatusAsync(int orderId, string status);
         Task<bool> DeleteOrderAsync(int orderId);
         Task<bool> IsAvailableTableAsync(int tableNumber);
