@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Restaurant.Shared.Core;
 
 namespace Restaurant.Shared.Middlewares
 {
@@ -20,19 +21,26 @@ namespace Restaurant.Shared.Middlewares
             {
                 await _next(context);
             }
-            catch (Exception ex)
+            catch (AppException ex)
             {
-                _logger.LogError(ex, "Unhandled Exception");
-
-                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-                context.Response.ContentType = "application/json";
-                await context.Response.WriteAsync(new
-                {
-                    StatusCode = context.Response.StatusCode,
-                    Message = "Internal Server Error",
-                    Detail = ex.Message
-                }.ToString()!);
+                _logger.LogError(ex, "AppException caught");
+                await HandleExceptionAsync(context, ex);
             }
+        }
+
+        private Task HandleExceptionAsync(HttpContext context, AppException ex)
+        {
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = ex.Code;
+
+            var response = new
+            {
+                code = ex.Code,
+                type = ex.ErrorType,
+                message = ex.Message
+            };
+
+            return context.Response.WriteAsync(response.ToString());
         }
     }
 }
